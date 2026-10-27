@@ -1,0 +1,3 @@
+wx_class,flown_flights,matched_flights,matched_pct,cells,matched_cells,unmatched_flights,unmatched_small_cell,unmatched_no_clear
+moderate,607533,577007,95.0,2951,1163,30526,30420,106
+severe,205938,186739,90.7,1974,528,19199,19199,0

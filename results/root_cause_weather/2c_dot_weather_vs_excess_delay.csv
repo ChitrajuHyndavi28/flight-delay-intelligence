@@ -1,0 +1,9 @@
+component,min_per_flight,pct_of_excess,total_excess_minutes,severe_flights_in_matched_cells
+"Excess arrival delay, all flown flights (severe - clear)",25.89,100.0,4834728.0,186739
+"DOT cause: Airline (excess, severe - clear)",3.412,13.2,637243.0,186739
+"DOT cause: Late aircraft (excess, severe - clear)",8.529,32.9,1592784.0,186739
+"DOT cause: Air system (NAS) (excess, severe - clear)",5.149,19.9,961449.0,186739
+"DOT cause: Weather (excess, severe - clear)",5.236,20.2,977801.0,186739
+"DOT cause: Security (excess, severe - clear)",0.003,0.0,648.0,186739
+Sum of 5 DOT causes (delays >= 15 min only),22.33,86.2,4169925.0,186739
+"Unattributed (delays < 15 min, no cause recorded)",3.56,13.8,664802.0,186739

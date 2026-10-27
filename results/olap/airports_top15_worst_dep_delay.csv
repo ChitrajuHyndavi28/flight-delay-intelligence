@@ -1,0 +1,16 @@
+airport,city,state,flights,avg_dep_delay_min,avg_arr_delay_min,delayed_pct
+ORD,Chicago,IL,276554,14.03,8.6,24.1
+EWR,Newark,NJ,98341,13.55,4.49,21.52
+BWI,Baltimore,MD,84329,13.26,7.25,22.59
+LGA,New York,NY,94834,13.17,5.63,23.95
+MDW,Chicago,IL,78685,12.77,6.05,21.95
+IAD,Chantilly,VA,33664,12.63,5.17,20.83
+MIA,Miami,FL,68301,12.41,7.04,23.11
+PBI,West Palm Beach,FL,22134,12.19,7.94,21.77
+HPN,White Plains,NY,7132,12.16,9.56,24.73
+HOU,Houston,TX,51132,12.08,7.6,21.78
+JFK,New York,NY,91663,12.04,3.61,22.1
+MCO,Orlando,FL,109532,11.98,6.96,20.4
+DAL,Dallas,TX,58672,11.94,7.99,22.46
+XNA,Fayetteville/Springdale/Rogers,AR,8963,11.81,11.23,22.58
+DEN,Denver,CO,193402,11.76,7.19,22.4

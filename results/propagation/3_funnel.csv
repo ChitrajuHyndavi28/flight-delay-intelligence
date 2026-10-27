@@ -1,0 +1,7 @@
+stage,flights,pct_of_flights_with_tail
+flights_with_tail,5804358.0,100.0
+has_prev_leg_same_day,4439529.0,76.5
+prev_leg_flown,4375805.0,75.4
+continuity_ok_dest_eq_origin,4326737.0,74.5
+analysis_set,3917656.0,67.5
+feature_set,3693636.0,63.6

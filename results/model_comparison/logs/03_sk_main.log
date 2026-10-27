@@ -1,0 +1,15 @@
+rows train/val/test = 3,836,893/462,153/932,084; delayed rate 0.202/0.130/0.180; class weights {0: 0.6267513836449428, 1: 2.47236505678157}
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+
+######## stage main ########
+[t60] dummy_majority seed 42: val PR-AUC 0.1300 test 0.1795 train 0s predict 0s (wall 0s)
+[t60] logistic_regression seed 42: val PR-AUC 0.4667 test 0.5502 train 352s predict 2s (wall 354s)
+[t60] naive_bayes_gaussian seed 42: val PR-AUC 0.2854 test 0.3698 train 7s predict 1s (wall 9s)
+[t60] naive_bayes_categorical seed 42: val PR-AUC 0.4039 test 0.4593 train 105s predict 1s (wall 107s)
+[t60] knn seed 42: val PR-AUC 0.4304 test 0.4800 train 0s predict 961s (wall 1169s)
+[t60] decision_tree seed 42: val PR-AUC 0.5232 test 0.6041 train 147s predict 0s (wall 148s)
+[t60] knn seed 43: val PR-AUC 0.4298 test 0.4809 train 0s predict 712s (wall 875s)
+[t60] decision_tree seed 43: val PR-AUC 0.5231 test 0.6042 train 40s predict 0s (wall 40s)
+[t60] knn seed 44: val PR-AUC 0.4305 test 0.4743 train 0s predict 102s (wall 160s)
+[t60] decision_tree seed 44: val PR-AUC 0.5232 test 0.6041 train 39s predict 0s (wall 39s)
+stage main done in 2901s

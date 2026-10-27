@@ -1,0 +1,38 @@
+rows train/val/test = 3,836,893/462,153/932,084; delayed rate 0.202/0.130/0.180; class weights {0: 0.6267513836449428, 1: 2.47236505678157}
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+
+######## stage tune ########
+{'num_leaves': 63, 'learning_rate': 0.1, 'min_child_samples': 100, 'feature_fraction': 0.6, 'best_iter': 200, 'val_pr_auc': np.float64(0.5563503121754141), 'val_roc_auc': np.float64(0.8034379643358858), 'fit_s': 11.0}
+{'num_leaves': 63, 'learning_rate': 0.1, 'min_child_samples': 100, 'feature_fraction': 0.9, 'best_iter': 129, 'val_pr_auc': np.float64(0.5533119928414599), 'val_roc_auc': np.float64(0.8017227468892991), 'fit_s': 8.0}
+{'num_leaves': 63, 'learning_rate': 0.1, 'min_child_samples': 1000, 'feature_fraction': 0.6, 'best_iter': 276, 'val_pr_auc': np.float64(0.5567307353197228), 'val_roc_auc': np.float64(0.8039443909358037), 'fit_s': 14.5}
+{'num_leaves': 63, 'learning_rate': 0.1, 'min_child_samples': 1000, 'feature_fraction': 0.9, 'best_iter': 146, 'val_pr_auc': np.float64(0.5547444610802282), 'val_roc_auc': np.float64(0.8026349399356206), 'fit_s': 8.9}
+{'num_leaves': 63, 'learning_rate': 0.05, 'min_child_samples': 100, 'feature_fraction': 0.6, 'best_iter': 347, 'val_pr_auc': np.float64(0.5577937923181456), 'val_roc_auc': np.float64(0.8047417290118757), 'fit_s': 17.9}
+{'num_leaves': 63, 'learning_rate': 0.05, 'min_child_samples': 100, 'feature_fraction': 0.9, 'best_iter': 151, 'val_pr_auc': np.float64(0.5536427942578658), 'val_roc_auc': np.float64(0.8026442081782179), 'fit_s': 9.1}
+{'num_leaves': 63, 'learning_rate': 0.05, 'min_child_samples': 1000, 'feature_fraction': 0.6, 'best_iter': 412, 'val_pr_auc': np.float64(0.5577585362615173), 'val_roc_auc': np.float64(0.8048831957930138), 'fit_s': 98.7}
+{'num_leaves': 63, 'learning_rate': 0.05, 'min_child_samples': 1000, 'feature_fraction': 0.9, 'best_iter': 184, 'val_pr_auc': np.float64(0.5544550938848709), 'val_roc_auc': np.float64(0.8029126162411807), 'fit_s': 10.3}
+{'num_leaves': 255, 'learning_rate': 0.1, 'min_child_samples': 100, 'feature_fraction': 0.6, 'best_iter': 75, 'val_pr_auc': np.float64(0.5536309302501359), 'val_roc_auc': np.float64(0.8019923708504861), 'fit_s': 11.4}
+{'num_leaves': 255, 'learning_rate': 0.1, 'min_child_samples': 100, 'feature_fraction': 0.9, 'best_iter': 43, 'val_pr_auc': np.float64(0.5515866328210045), 'val_roc_auc': np.float64(0.8001392034895339), 'fit_s': 8.7}
+{'num_leaves': 255, 'learning_rate': 0.1, 'min_child_samples': 1000, 'feature_fraction': 0.6, 'best_iter': 88, 'val_pr_auc': np.float64(0.5557546625091314), 'val_roc_auc': np.float64(0.8029236219544726), 'fit_s': 12.6}
+{'num_leaves': 255, 'learning_rate': 0.1, 'min_child_samples': 1000, 'feature_fraction': 0.9, 'best_iter': 78, 'val_pr_auc': np.float64(0.5532738433477741), 'val_roc_auc': np.float64(0.7999817063880329), 'fit_s': 12.1}
+{'num_leaves': 255, 'learning_rate': 0.05, 'min_child_samples': 100, 'feature_fraction': 0.6, 'best_iter': 160, 'val_pr_auc': np.float64(0.5571293559540664), 'val_roc_auc': np.float64(0.803500468767523), 'fit_s': 19.5}
+{'num_leaves': 255, 'learning_rate': 0.05, 'min_child_samples': 100, 'feature_fraction': 0.9, 'best_iter': 94, 'val_pr_auc': np.float64(0.5537027318949044), 'val_roc_auc': np.float64(0.8008744910461174), 'fit_s': 14.0}
+{'num_leaves': 255, 'learning_rate': 0.05, 'min_child_samples': 1000, 'feature_fraction': 0.6, 'best_iter': 266, 'val_pr_auc': np.float64(0.5574323688893605), 'val_roc_auc': np.float64(0.8035411952503774), 'fit_s': 32.3}
+{'num_leaves': 255, 'learning_rate': 0.05, 'min_child_samples': 1000, 'feature_fraction': 0.9, 'best_iter': 109, 'val_pr_auc': np.float64(0.5549111564135725), 'val_roc_auc': np.float64(0.8014810366618998), 'fit_s': 115.1}
+best: {'num_leaves': 63, 'learning_rate': 0.05, 'min_child_samples': 100, 'feature_fraction': 0.6}
+stage tune done in 430s
+
+######## stage main ########
+{'max_depth': 3, 'val_pr_auc': np.float64(0.3651635736361994), 'val_roc_auc': np.float64(0.6633952645931536)}
+{'max_depth': 4, 'val_pr_auc': np.float64(0.4098503614268221), 'val_roc_auc': np.float64(0.6964691921204481)}
+{'max_depth': 5, 'val_pr_auc': np.float64(0.4358325754355993), 'val_roc_auc': np.float64(0.7179661904428049)}
+{'max_depth': 6, 'val_pr_auc': np.float64(0.46483232779827066), 'val_roc_auc': np.float64(0.735900308543044)}
+{'max_depth': 8, 'val_pr_auc': np.float64(0.49818458892442913), 'val_roc_auc': np.float64(0.7590924382439267)}
+{'max_depth': 10, 'val_pr_auc': np.float64(0.5172031955416847), 'val_roc_auc': np.float64(0.7697145451077053)}
+{'max_depth': 12, 'val_pr_auc': np.float64(0.5200680656845843), 'val_roc_auc': np.float64(0.7747563153748369)}
+{'max_depth': 14, 'val_pr_auc': np.float64(0.5183501076185425), 'val_roc_auc': np.float64(0.7745907453492933)}
+{'max_depth': 16, 'val_pr_auc': np.float64(0.5133452284765491), 'val_roc_auc': np.float64(0.7662203155369911)}
+{'max_depth': 20, 'val_pr_auc': np.float64(0.5052386436476184), 'val_roc_auc': np.float64(0.755848588324514)}
+[t60] lightgbm seed 42: val PR-AUC 0.5650 test PR-AUC 0.6388 train 92s iters 417
+[t60] lightgbm seed 43: val PR-AUC 0.5650 test PR-AUC 0.6386 train 177s iters 397
+[t60] lightgbm seed 44: val PR-AUC 0.5663 test PR-AUC 0.6388 train 134s iters 556
+stage main done in 865s

@@ -1,0 +1,8 @@
+rows train/val/test = 3,836,893/462,153/932,084; delayed rate 0.202/0.130/0.180; class weights {0: 0.6267513836449428, 1: 2.47236505678157}
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+
+######## stage main ########
+[t60] random_forest seed 42: val PR-AUC 0.5428 test 0.6183 train 34s predict 2s (wall 37s)
+[t60] random_forest seed 43: val PR-AUC 0.5431 test 0.6187 train 35s predict 2s (wall 39s)
+[t60] random_forest seed 44: val PR-AUC 0.5440 test 0.6197 train 37s predict 2s (wall 41s)
+stage main done in 116s

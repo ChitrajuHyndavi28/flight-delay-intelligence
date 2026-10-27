@@ -1,0 +1,131 @@
+=== 1a. Row counts ===
+      table    rows
+fact_flight 5819079
+   dim_date     365
+dim_airline      14
+dim_airport     323
+  dim_route    8609
+dim_weather  112786
+
+=== 1b. NULL rate per column ===
+      table                  column  null_pct
+fact_flight             tail_number      0.25
+fact_flight           departure_min      1.48
+fact_flight          wheels_off_min      1.53
+fact_flight           wheels_on_min      1.59
+fact_flight             arrival_min      1.59
+fact_flight     departure_delay_min      1.48
+fact_flight       arrival_delay_min      1.81
+fact_flight            air_time_min      1.81
+fact_flight        elapsed_time_min      1.81
+fact_flight            taxi_out_min      1.53
+fact_flight             taxi_in_min      1.59
+fact_flight    air_system_delay_min     81.72
+fact_flight      security_delay_min     81.72
+fact_flight       airline_delay_min     81.72
+fact_flight late_aircraft_delay_min     81.72
+fact_flight       weather_delay_min     81.72
+fact_flight     cancellation_reason     98.46
+dim_weather             snowfall_mm      9.59
+dim_weather           snow_depth_mm     20.13
+dim_weather                  tmax_c      2.07
+dim_weather                  tmin_c      2.07
+dim_weather                  tavg_c     98.39
+dim_weather             avg_wind_ms      8.24
+dim_airport                latitude      1.24
+dim_airport               longitude      1.24
+
+--- NULL % among flown flights (not cancelled, not diverted) ---
+flown                    5714008.00
+tail_number                    0.00
+departure_min                  0.00
+arrival_min                    0.00
+departure_delay_min            0.00
+arrival_delay_min              0.00
+air_time_min                   0.00
+elapsed_time_min               0.00
+taxi_out_min                   0.00
+taxi_in_min                    0.00
+scheduled_time_min             0.00
+air_system_delay_min          81.39
+late_aircraft_delay_min       81.39
+weather_delay_min             81.39
+
+--- referential integrity / duplicates ---
+ dup_flight_keys  orphan_route  orphan_date  cancelled_and_diverted  canc_no_reason  sum_flight_count
+               0             0            0                       0               0         5819079.0
+
+=== 1c. Cancelled / diverted by month ===
+ month  flights  cancelled  diverted  cancel_pct  divert_pct
+     1   469968    11982.0     973.0        2.55        0.21
+     2   429191    20517.0    1011.0        4.78        0.24
+     3   504312    11002.0    1172.0        2.18        0.23
+     4   485151     4520.0    1380.0        0.93        0.28
+     5   496993     5694.0    1658.0        1.15        0.33
+     6   503897     9120.0    1930.0        1.81        0.38
+     7   520718     4806.0    1528.0        0.92        0.29
+     8   510536     5052.0    1528.0        0.99        0.30
+     9   464946     2075.0     718.0        0.45        0.15
+    10   486165     2454.0     833.0        0.50        0.17
+    11   467972     4599.0    1006.0        0.98        0.21
+    12   479230     8063.0    1450.0        1.68        0.30
+
+=== 2. Unknown airport / weather by month ===
+ month  flights  unk_origin_airport  unk_dest_airport  unk_origin_wx  unk_dest_wx  pct_unk_origin_airport  pct_unk_origin_wx
+     1   469968                 0.0               0.0         3485.0       3474.0                     0.0                0.7
+     2   429191                 0.0               0.0         2995.0       2997.0                     0.0                0.7
+     3   504312                 0.0               0.0         3564.0       3566.0                     0.0                0.7
+     4   485151                 0.0               0.0         3530.0       3527.0                     0.0                0.7
+     5   496993                 0.0               0.0         3395.0       3396.0                     0.0                0.7
+     6   503897                 0.0               0.0         3638.0       3643.0                     0.0                0.7
+     7   520718                 0.0               0.0         3974.0       3980.0                     0.0                0.8
+     8   510536                 0.0               0.0         3597.0       3588.0                     0.0                0.7
+     9   464946                 0.0               0.0         2614.0       2604.0                     0.0                0.6
+    10   486165            486165.0          486165.0       486165.0     486165.0                   100.0              100.0
+    11   467972                 0.0               0.0         3188.0       3194.0                     0.0                0.7
+    12   479230                 0.0               0.0         3799.0       3814.0                     0.0                0.8
+
+October: 100.0% of origins are Unknown -> EXCLUDE from airport-level & modeling work
+Non-October Unknown-weather origins (airports with no station inside the radius):
+airport  flights
+    SJU    24656
+    STT     4348
+    ECP     4169
+    BQN     1343
+    STX      939
+    PSE      749
+    DVL      525
+    GUM      334
+    PBG      281
+    UST      155
+ flights_unknown_wx_nonoct  pct
+                     37779 0.71
+
+=== 3. Weather severity & flags ===
+Populated? non-null counts in dim_weather (113k station-days):
+ n_rows  severity   rain   snow  high_wind   prcp  snow_mm  snwd   tmax  tavg   awnd
+ 112786    112786 112785 112785     112785 112785   101970 90079 110456  1815 103497
+
+Warehouse weather_severity vs. spec-derived class (station-days):
+warehouse_label derived_class  station_days
+          Clear         clear         70219
+          Clear      moderate           208
+          Light         clear         16163
+          Light      moderate            84
+       Moderate         clear          6903
+       Moderate      moderate         13741
+       Moderate        severe             5
+         Severe      moderate           300
+         Severe        severe          5162
+        Unknown       unknown             1
+
+Distribution of derived class, weighted by flights (origin side, excluding Oct):
+derived_class  flights   pct
+        clear  4439220 83.24
+     moderate   628787 11.79
+       severe   227128  4.26
+      unknown    37779  0.71
+
+Station distance (km) for matched weather rows:
+ min  median  p95   max
+0.01    0.85 5.56 49.79

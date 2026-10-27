@@ -1,0 +1,10 @@
+rows train/val/test = 3,836,893/462,153/932,084; delayed rate 0.202/0.130/0.180; class weights {0: 0.6267513836449428, 1: 2.47236505678157}
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+
+######## stage xgb_tuned ########
+xgb tuning cached: {'max_depth': 8, 'learning_rate': 0.05, 'min_child_weight': 50, 'colsample_bytree': 0.6}
+[t60] xgboost_tuned seed 43: val PR-AUC 0.5649 test 0.6390 train 77s
+[t60] xgboost_tuned seed 44: val PR-AUC 0.5647 test 0.6398 train 84s
+[t60] xgboost_native_tuned seed 42: val PR-AUC 0.5681 test 0.6409 train 196s
+[dayahead] xgboost_tuned seed 42: val PR-AUC 0.2772 test 0.3411 train 65s
+stage xgb_tuned done in 440s

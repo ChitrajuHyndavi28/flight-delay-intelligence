@@ -1,0 +1,10 @@
+training_data,model,pr_auc,lift,pr_auc_boot_ci,roc_auc,train_s,n_train
+1M stratified sample,LightGBM on RF's 1M sample,0.6333 ± 0.0004,3.53x,"[0.6310, 0.6356]",0.8158,16.1,1000000.0
+1M stratified sample,XGBoost (tuned) on RF's 1M sample,0.6376 ± 0.0006,3.55x,"[0.6351, 0.6396]",0.8185,38.0,1000000.0
+1M stratified sample,Random Forest,0.6189 ± 0.0006,3.45x,"[0.6160, 0.6208]",0.8128,35.6,1000000.0
+1M stratified sample,  >> LightGBM minus Random Forest (paired),+0.0149,statistically real and practically meaningful,"[0.0141, 0.0157]",,,
+200k stratified sample,LightGBM on KNN's 200k sample,0.6223 ± 0.0006,3.47x,"[0.6200, 0.6246]",0.8081,22.1,200000.0
+200k stratified sample,XGBoost (tuned) on KNN's 200k sample,0.6299 ± 0.0007,3.51x,"[0.6271, 0.6317]",0.8133,27.3,200000.0
+200k stratified sample,KNN,0.4784 ± 0.0029,2.66x,"[0.4775, 0.4826]",0.7400,0.3,200000.0
+200k stratified sample,  >> LightGBM minus KNN (paired),+0.1422,statistically real and practically meaningful,"[0.1405, 0.1439]",,,
+full training set (3.84M rows),LightGBM (main),0.6387 ± 0.0001,3.56x,"[0.6366, 0.6411]",0.8202,134.2,3836893.0

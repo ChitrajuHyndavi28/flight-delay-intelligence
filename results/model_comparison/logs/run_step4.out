@@ -1,0 +1,14 @@
++ ../.venv/bin/python 04_train_compare.py --stages tune main --models lightgbm
++ ../.venv/bin/python 04_train_compare.py --stages main --models xgboost
++ ../.venv/bin/python 04_train_compare.py --stages main --models dummy_majority logistic_regression naive_bayes_gaussian naive_bayes_categorical decision_tree knn
++ ../.venv/bin/python 04_train_compare.py --stages main --models random_forest
++ ../.venv/bin/python 04_train_compare.py --stages ablation --models lightgbm
++ ../.venv/bin/python 04_train_compare.py --stages ablation --models xgboost_native_cat
++ ../.venv/bin/python 04_train_compare.py --stages scalability --models lightgbm
++ ../.venv/bin/python 04_train_compare.py --stages scalability --models xgboost
++ ../.venv/bin/python 04_train_compare.py --stages scalability --models logistic_regression
++ ../.venv/bin/python 04_train_compare.py --stages scalability --models random_forest
++ ../.venv/bin/python 04_train_compare.py --stages dayahead
++ ../.venv/bin/python 04_train_compare.py --stages evaluate
++ echo ALL_DONE
+ALL_DONE

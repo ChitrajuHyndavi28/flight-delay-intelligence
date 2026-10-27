@@ -1,0 +1,82 @@
+|--- prev_leg_dep_delay <= 16.50
+|   |--- prev_leg_status=not_departed <= 0.50
+|   |   |--- prev_leg_sched_arr_minus_t60 <= 36.50
+|   |   |   |--- o_wx_class=clear <= 0.50
+|   |   |   |   |--- o_snow <= 14.00
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- o_snow >  14.00
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- o_wx_class=clear >  0.50
+|   |   |   |   |--- d_wx_class=clear <= 0.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- d_wx_class=clear >  0.50
+|   |   |   |   |   |--- class: 0
+|   |   |--- prev_leg_sched_arr_minus_t60 >  36.50
+|   |   |   |--- prev_leg_sched_arr_minus_t60 <= 49.50
+|   |   |   |   |--- prev_leg_dep_delay <= -0.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- prev_leg_dep_delay >  -0.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- prev_leg_sched_arr_minus_t60 >  49.50
+|   |   |   |   |--- planned_turn_min <= -4.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- planned_turn_min >  -4.50
+|   |   |   |   |   |--- class: 1
+|   |--- prev_leg_status=not_departed >  0.50
+|   |   |--- airline=HA <= 0.50
+|   |   |   |--- distance_miles <= 165.00
+|   |   |   |   |--- d_prcp <= 0.15
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- d_prcp >  0.15
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- distance_miles >  165.00
+|   |   |   |   |--- planned_turn_min <= -92.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- planned_turn_min >  -92.50
+|   |   |   |   |   |--- class: 1
+|   |   |--- airline=HA >  0.50
+|   |   |   |--- class: 1
+|--- prev_leg_dep_delay >  16.50
+|   |--- prev_leg_status=landed <= 0.50
+|   |   |--- prev_leg_dep_delay <= 31.50
+|   |   |   |--- planned_turn_min <= 43.50
+|   |   |   |   |--- prev_leg_dep_delay <= 23.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- prev_leg_dep_delay >  23.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- planned_turn_min >  43.50
+|   |   |   |   |--- o_prcp <= 0.40
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- o_prcp >  0.40
+|   |   |   |   |   |--- class: 1
+|   |   |--- prev_leg_dep_delay >  31.50
+|   |   |   |--- planned_turn_min <= 63.50
+|   |   |   |   |--- prev_leg_dep_delay <= 43.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- prev_leg_dep_delay >  43.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- planned_turn_min >  63.50
+|   |   |   |   |--- prev_leg_dep_delay <= 56.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- prev_leg_dep_delay >  56.50
+|   |   |   |   |   |--- class: 1
+|   |--- prev_leg_status=landed >  0.50
+|   |   |--- o_wx_class=clear <= 0.50
+|   |   |   |--- prev_leg_sched_arr_minus_t60 <= -127.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- prev_leg_sched_arr_minus_t60 >  -127.50
+|   |   |   |   |--- o_tmin <= 5.30
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- o_tmin >  5.30
+|   |   |   |   |   |--- class: 1
+|   |   |--- o_wx_class=clear >  0.50
+|   |   |   |--- prev_leg_sched_arr_minus_t60 <= -192.50
+|   |   |   |   |--- hist_origin_rate <= 0.18
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- hist_origin_rate >  0.18
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- prev_leg_sched_arr_minus_t60 >  -192.50
+|   |   |   |   |--- hist_route_rate <= 0.19
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- hist_route_rate >  0.19
+|   |   |   |   |   |--- class: 0

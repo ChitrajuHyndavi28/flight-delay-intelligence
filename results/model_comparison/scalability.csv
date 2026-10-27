@@ -1,0 +1,16 @@
+model,n_train,train_time_s,val_pr_auc,note
+lightgbm,100000,4.2,0.5332,"300 rounds, tuned params, no early stopping"
+lightgbm,500000,7.9,0.5522,"300 rounds, tuned params, no early stopping"
+lightgbm,1000000,11.3,0.5574,"300 rounds, tuned params, no early stopping"
+lightgbm,3836893,28.8,0.564,"300 rounds, tuned params, no early stopping"
+xgboost,100000,1.5,0.5316,"300 rounds, depth 8"
+xgboost,500000,4.0,0.5428,"300 rounds, depth 8"
+xgboost,1000000,7.0,0.5529,"300 rounds, depth 8"
+xgboost,3836893,28.4,0.5592,"300 rounds, depth 8"
+logistic_regression,100000,1.4,0.4625,includes one-hot preprocessing
+logistic_regression,500000,7.5,0.4648,includes one-hot preprocessing
+logistic_regression,1000000,14.9,0.4648,includes one-hot preprocessing
+logistic_regression,3836893,61.6,0.4667,includes one-hot preprocessing
+random_forest,100000,2.7,0.5238,150 trees
+random_forest,500000,17.2,0.5391,150 trees
+random_forest,1000000,38.4,0.5428,150 trees

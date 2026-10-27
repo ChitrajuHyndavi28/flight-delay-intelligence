@@ -1,0 +1,8 @@
++ ../.venv/bin/python 04_train_compare.py --stages xgb_tuned
++ ../.venv/bin/python 04_train_compare.py --stages matched --models lightgbm
++ ../.venv/bin/python 04_train_compare.py --stages matched --models xgboost_tuned
++ ../.venv/bin/python 04_train_compare.py --stages ablation2 --models lightgbm
++ ../.venv/bin/python 04_train_compare.py --stages evaluate
++ ../.venv/bin/python 04_explain.py
++ echo ALL_DONE_B
+ALL_DONE_B

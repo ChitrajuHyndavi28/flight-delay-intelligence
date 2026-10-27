@@ -1,0 +1,4 @@
+scope,flights,cancelled,weather_coded,cancel_rate_pct,weather_share_of_cancellations_pct
+all 12 months (headline definition),5819079,89884.0,48851.0,1.545,54.35
+excl. October (airport-level analyses),5332914,87430.0,47874.0,1.639,54.76
+excl. Oct & unknown-weather (Step 2c scope),5295135,87076.0,47691.0,1.644,54.77

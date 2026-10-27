@@ -1,0 +1,52 @@
+LIVE DEMO  -  Flight Delay & Airport Operations Intelligence   (2026-10-13 15:43:51)
+
+================================================================================================
+STAGE 3 - LIVE PREDICTION   (saved full-data T-60 LightGBM model, 5 real flights from Nov-Dec)
+================================================================================================
+(loaded cached T-60 feature matrix: 5,231,130 flights x 43 features in 1.4s)
+Model: LightGBM, 417 trees, trained on all Jan-Aug flights (3,836,893); decision threshold 0.565 (max-F1 on September).
+
+FLIGHT 1   2015-12-11   WN   SJC -> LAX   scheduled departure 10:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : airborne (left its gate 3 min early)
+  Model says                 : P(delayed) = 0.34  ->  predicted ON TIME   (threshold 0.57)
+  What actually happened     : arrived 25 min late  ->  DELAYED     [MISSED]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): prev_leg_dep_delay=-3.00 (-0.67); dest=LAX (+0.38); week_of_year=50 (-0.29)
+
+FLIGHT 2   2015-12-26   AA   CLT -> FLL   scheduled departure 12:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : airborne (left its gate 4 min early)
+  Model says                 : P(delayed) = 0.95  ->  predicted DELAYED   (threshold 0.57)
+  What actually happened     : arrived 96 min late  ->  DELAYED     [CORRECT]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): prev_leg_sched_arr_minus_t60=63 (+1.98); planned_turn_min=-3.00 (+1.49); prev_leg_dep_delay=-4.00 (-0.39)
+
+FLIGHT 3   2015-12-13   NK   BOS -> ATL   scheduled departure 14:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : landed (left its gate 2 min late)
+  Model says                 : P(delayed) = 0.26  ->  predicted ON TIME   (threshold 0.57)
+  What actually happened     : arrived 42 min late  ->  DELAYED     [MISSED]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): airline=NK (+0.48); prev_leg_dep_delay=2.00 (-0.28); prev_leg_arr_delay=-15 (-0.25)
+
+FLIGHT 4   2015-11-09   OO   ATL -> IAH   scheduled departure 06:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : no prev leg
+  Model says                 : P(delayed) = 0.26  ->  predicted ON TIME   (threshold 0.57)
+  What actually happened     : arrived 1 min early  ->  ON TIME     [CORRECT]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): sched_dep_hour=6.00 (-0.46); week_of_year=46 (-0.25); airline=OO (+0.24)
+
+FLIGHT 5   2015-12-15   MQ   CLT -> SGF   scheduled departure 11:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : landed (left its gate 5 min early)
+  Model says                 : P(delayed) = 0.14  ->  predicted ON TIME   (threshold 0.57)
+  What actually happened     : arrived 11 min early  ->  ON TIME     [CORRECT]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): prev_leg_dep_delay=-5.00 (-0.48); week_of_year=51 (-0.33); prev_leg_arr_delay=-15 (-0.26)
+
+Result: 3 of 5 flights classified correctly at the September-tuned threshold (a 5-flight sample says nothing about accuracy; see Stage 2 / the report).
+
+================================================================================================
+RUNTIME
+================================================================================================
+  Stage 3: Live prediction                 1.7 s
+  Total: 1.7 s
+
+(full output saved to results/demo/demo_run_20261013_154351.txt)

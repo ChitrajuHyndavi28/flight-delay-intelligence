@@ -1,0 +1,5 @@
+model,term,odds_ratio,ci95_lo,ci95_hi,p_value,n,events,base_rate_pct
+delayed (arr>=15) ~ weather + airport + month + hour + airline,moderate,1.9775,1.9038,2.0541,0.0,1000000,191842,19.1842
+delayed (arr>=15) ~ weather + airport + month + hour + airline,severe,3.5985,3.3465,3.8695,0.0,1000000,191842,19.1842
+cancelled ~ weather + airport + month + hour + airline,moderate,2.5504,2.2611,2.8767,0.0,1000000,16351,1.6351
+cancelled ~ weather + airport + month + hour + airline,severe,7.7019,6.5679,9.0317,0.0,1000000,16351,1.6351

@@ -1,0 +1,1 @@
+{"best_params": {"max_depth": 8, "learning_rate": 0.05, "min_child_weight": 50, "colsample_bytree": 0.6}, "tuned_on": "1,000,000-row stratified train sample, validation PR-AUC only"}

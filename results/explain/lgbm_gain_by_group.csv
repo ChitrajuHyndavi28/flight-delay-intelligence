@@ -1,0 +1,8 @@
+feature_group,gain_share_pct
+Predecessor status/delay (T-60),42.27
+Airline / airport / route,24.28
+Weather (origin+dest),11.69
+Schedule turn structure,11.49
+Time of day / calendar,9.11
+Historical delay rates,1.01
+Distance / schedule,0.15

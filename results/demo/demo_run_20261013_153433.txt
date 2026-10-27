@@ -1,0 +1,118 @@
+LIVE DEMO  -  Flight Delay & Airport Operations Intelligence   (2026-10-13 15:34:33)
+
+================================================================================================
+STAGE 1 - THE WAREHOUSE IS REAL   (DuckDB, read-only)
+================================================================================================
+Row counts:
+      table      rows
+fact_flight 5,819,079
+   dim_date       365
+dim_airline        14
+dim_airport       323
+  dim_route     8,609
+dim_weather   112,786
+
+A. ROLL-UP: flights, delay, on-time % and cancellations by quarter        (query time 0.04 s)
+quarter   flights  avg_arrival_delay_min  on_time_pct cancellations
+     Q1 1,403,471                    6.2         78.9        43,501
+     Q2 1,486,041                    5.8         80.3        19,334
+     Q3 1,496,200                    3.6         82.3        11,933
+     Q4 1,433,367                    2.1         83.9        15,116
+
+B. PIVOT: average ARRIVAL delay (minutes), airline x month, top 8 airlines by volume   (query time 0.03 s)
+airline  M01  M02  M03  M04  M05  M06  M07  M08  M09  M10  M11  M12
+     B6  7.3 18.7 10.7  2.8 -0.7  5.0  5.8  9.3  3.5  3.7  1.4 13.8
+     EV  8.5 10.4  6.7  4.8  7.7 14.0  6.9  5.2  0.9  2.3  4.4  6.7
+     MQ 18.2 21.3 11.0  5.1  5.5  9.6  4.0  1.9 -2.2 -3.7  0.2  0.7
+     OO 10.9  9.6  3.2  3.2  4.1  8.3  6.8  5.6  1.5  1.8  4.9 10.9
+     UA  6.4  7.3  4.9  4.4  6.8 16.9 10.3  5.0 -1.8 -2.5  0.3  7.0
+     WN  3.4  3.5  3.3  3.0  5.7 10.7 10.5  5.5 -1.3 -0.7  1.0  6.7
+     AA  7.0  7.5  6.7  4.9  5.2  8.2  3.9  3.2 -1.4 -0.6  0.8  4.1
+     DL -2.0  5.6  2.1  0.1  0.1  4.4  1.2  0.7 -3.7 -5.0 -3.2  2.5
+
+================================================================================================
+STAGE 2 - LIVE ALGORITHM COMPARISON   (200,000 train flights / 100,000 test flights, fixed seed 42)
+================================================================================================
+(loaded cached T-60 feature matrix: 5,231,130 flights x 43 features in 1.3s)
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+Task: will a flight arrive 15+ min late?  Prediction moment T-60 (1 h before departure), 43 features, balanced class weights.
+Train: Jan-Aug sample | Test: Nov-Dec sample | Sep sample (50,000) is used only for early stopping and the F1 threshold (no tuning live).
+
+[1/9] training Majority dummy ... done in   0.0 s   PR-AUC 0.180
+[2/9] training Naive Bayes (Gaussian) ... done in   0.3 s   PR-AUC 0.372
+[3/9] training Naive Bayes (Categorical) ... done in   0.4 s   PR-AUC 0.448
+[4/9] training Logistic Regression ... done in   2.9 s   PR-AUC 0.548
+[5/9] training Decision Tree ... done in   1.9 s   PR-AUC 0.587
+[6/9] training KNN (k=50) ... done in  15.7 s   PR-AUC 0.482
+[7/9] training Random Forest ... done in   5.0 s   PR-AUC 0.604
+[8/9] training XGBoost (tuned) ... done in   5.7 s   PR-AUC 0.627
+[9/9] training LightGBM ... done in   3.0 s   PR-AUC 0.621
+
+RESULT (test flights Nov-Dec, ranked by PR-AUC):
+ rank                     model PR-AUC  lift ROC-AUC    F1 train time        
+    1           XGBoost (tuned)  0.627 3.49x   0.811 0.551      5.7 s <-- TOP
+    2                  LightGBM  0.621 3.46x   0.807 0.548      3.0 s        
+    3             Random Forest  0.604 3.37x   0.806 0.541      5.0 s        
+    4             Decision Tree  0.587 3.27x   0.776 0.523      1.9 s        
+    5       Logistic Regression  0.548 3.05x   0.779 0.506      2.9 s        
+    6                KNN (k=50)  0.482 2.69x   0.741 0.467     15.7 s        
+    7 Naive Bayes (Categorical)  0.448 2.50x   0.727 0.432      0.4 s        
+    8    Naive Bayes (Gaussian)  0.372 2.07x   0.719 0.435      0.3 s        
+    9            Majority dummy  0.180 1.00x   0.500 0.000      0.0 s        
+Note: ranks 1 and 2 differ by only 0.007 PR-AUC (< 0.01 counts as practically equivalent in the full-data study), so their order is not meaningful.
+
+Base rate of the test sample: 18.0% of flights arrive 15+ min late  ->  a model that ignores every feature scores PR-AUC = 0.180.
+Full-data results (all Jan-Aug training rows): see results/model_comparison/comparison_table.csv
+Table saved to results/demo/live_comparison.csv
+
+================================================================================================
+STAGE 3 - LIVE PREDICTION   (saved full-data T-60 LightGBM model, 5 real flights from Nov-Dec)
+================================================================================================
+Model: LightGBM, 417 trees, trained on all Jan-Aug flights (3,836,893); decision threshold 0.565 (max-F1 on September).
+
+FLIGHT 1   2015-12-11   WN   SJC -> LAX   scheduled departure 10:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : airborne (left its gate 3 min early)
+  Model says                 : P(delayed) = 0.34  ->  predicted ON TIME   (threshold 0.57)
+  What actually happened     : arrived 25 min late  ->  DELAYED     [MISSED]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): prev_leg_dep_delay=-3.00 (-0.67); dest=LAX (+0.38); week_of_year=50 (-0.29)
+
+FLIGHT 2   2015-12-26   AA   CLT -> FLL   scheduled departure 12:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : airborne (left its gate 4 min early)
+  Model says                 : P(delayed) = 0.95  ->  predicted DELAYED   (threshold 0.57)
+  What actually happened     : arrived 96 min late  ->  DELAYED     [CORRECT]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): prev_leg_sched_arr_minus_t60=63 (+1.98); planned_turn_min=-3.00 (+1.49); prev_leg_dep_delay=-4.00 (-0.39)
+
+FLIGHT 3   2015-12-13   NK   BOS -> ATL   scheduled departure 14:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : landed (left its gate 2 min late)
+  Model says                 : P(delayed) = 0.26  ->  predicted ON TIME   (threshold 0.57)
+  What actually happened     : arrived 42 min late  ->  DELAYED     [MISSED]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): airline=NK (+0.48); prev_leg_dep_delay=2.00 (-0.28); prev_leg_arr_delay=-15 (-0.25)
+
+FLIGHT 4   2015-11-09   OO   ATL -> IAH   scheduled departure 06:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : no prev leg
+  Model says                 : P(delayed) = 0.26  ->  predicted ON TIME   (threshold 0.57)
+  What actually happened     : arrived 1 min early  ->  ON TIME     [CORRECT]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): sched_dep_hour=6.00 (-0.46); week_of_year=46 (-0.25); airline=OO (+0.24)
+
+FLIGHT 5   2015-12-15   MQ   CLT -> SGF   scheduled departure 11:xx
+  Origin weather             : clear
+  Inbound aircraft at T-60   : landed (left its gate 5 min early)
+  Model says                 : P(delayed) = 0.14  ->  predicted ON TIME   (threshold 0.57)
+  What actually happened     : arrived 11 min early  ->  ON TIME     [CORRECT]
+  Top 3 drivers (SHAP, +raises / -lowers delay risk): prev_leg_dep_delay=-5.00 (-0.48); week_of_year=51 (-0.33); prev_leg_arr_delay=-15 (-0.26)
+
+Result: 3 of 5 flights classified correctly at the September-tuned threshold (a 5-flight sample says nothing about accuracy; see Stage 2 / the report).
+
+================================================================================================
+RUNTIME
+================================================================================================
+  Stage 1: Warehouse is real               0.1 s
+  Stage 2: Live algorithm comparison      37.0 s
+  Stage 3: Live prediction                 0.3 s
+  Total: 37.4 s
+
+(full output saved to results/demo/demo_run_20261013_153433.txt)

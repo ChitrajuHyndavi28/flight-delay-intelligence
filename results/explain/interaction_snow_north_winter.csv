@@ -1,0 +1,5 @@
+group,flights,actual_delay_rate_snow_gt0,actual_delay_rate_no_snow,model_effect_of_30mm_snow_on_P_delay
+"Northern origin, December (winter)",161025,0.4178,0.1927,0.0649
+"Southern origin, December",219242,0.4423,0.1993,0.0527
+"Northern origin, November",160381,0.3787,0.1412,0.0649
+"Southern origin, November",213437,0.6,0.1488,0.053

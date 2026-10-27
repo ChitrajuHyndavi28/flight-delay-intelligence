@@ -1,0 +1,8 @@
+effect,delta_pr_auc,pr_auc_ci,delta_roc_auc,roc_auc_ci
+"Weather effect, day-ahead (ON minus OFF)",0.1043,"[0.1023, 0.1062]",0.0785,"[0.0772, 0.0798]"
+"Weather effect, T-60 (ON minus OFF)",0.0405,"[0.0395, 0.0414]",0.0396,"[0.0388, 0.0405]"
+Propagation effect: T-60 minus day-ahead (weather ON),0.2866,"[0.2844, 0.2889]",0.1216,"[0.1204, 0.1228]"
+  of which schedule-known turn structure,0.0652,"[0.0637, 0.0667]",0.0257,"[0.0250, 0.0263]"
+  of which live predecessor status / delays,0.2214,"[0.2194, 0.2234]",0.0959,"[0.0948, 0.0969]"
+Month / week_of_year effect (with minus without),-0.0045,"[-0.0049, -0.0040]",-0.0031,"[-0.0035, -0.0028]"
+Historical-rate effect (with minus without),0.0001,"[-0.0001, 0.0004]",-0.0002,"[-0.0004, 0.0000]"

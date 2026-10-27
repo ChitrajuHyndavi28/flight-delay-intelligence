@@ -1,0 +1,12 @@
+# environment and caches
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+# large or regenerable data (GitHub rejects files over 100 MB); see README for how to rebuild
+datasets/
+warehouse/fact_flight.csv
+warehouse/*.db
+backups/
+*.duckdb
+mining_cache/

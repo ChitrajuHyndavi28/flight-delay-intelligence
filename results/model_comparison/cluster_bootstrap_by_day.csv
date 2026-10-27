@@ -1,0 +1,10 @@
+scenario,comparison,mean_diff_pr_auc,day_cluster_ci_lo,day_cluster_ci_hi,n_days,verdict
+t60,"LightGBM minus XGBoost (tuned, ordinal codes)",0.0004378923033641603,-0.0019196504016227383,0.003054487776205172,61,"not statistically distinguishable (practically equivalent, CI inside +/-0.01)"
+t60,"LightGBM minus XGBoost (native categoricals, tuned)",-0.002151655732109971,-0.003470216455660066,-0.0008782216241373653,61,statistically real but practically negligible (< 0.01)
+t60,"LightGBM minus XGBoost (default params, ordinal codes)",0.003142146309259888,0.000741305636908407,0.005292455336357709,61,statistically real but practically negligible (< 0.01)
+t60,LightGBM minus Random Forest,0.02057761416171585,0.01743009474162468,0.02399842152471907,61,statistically real and practically meaningful
+t60,LightGBM minus Decision Tree (CART),0.0347216450292131,0.031624223828629616,0.03796623550705078,61,statistically real and practically meaningful
+t60,LightGBM minus Logistic Regression,0.08868597072427817,0.08215413935693687,0.09525147806097374,61,statistically real and practically meaningful
+dayahead,"LightGBM minus XGBoost (tuned, ordinal codes)",0.01114410776953974,0.004274992678276519,0.0180687139452758,61,statistically real and practically meaningful
+dayahead,"LightGBM minus XGBoost (native categoricals, tuned)",-0.0034862990738893256,-0.008331666034963778,0.0010555881019414135,61,"not statistically distinguishable (practically equivalent, CI inside +/-0.01)"
+dayahead,LightGBM minus Random Forest,0.010749177193227741,0.00377669143051773,0.017728867486087103,61,statistically real and practically meaningful

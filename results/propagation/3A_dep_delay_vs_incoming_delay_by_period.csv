@@ -1,0 +1,28 @@
+dep_period,flights,mean_dep_delay,incoming_delay_bin
+afternoon,335679,0.3,< -15 (early)
+evening/night,191075,0.8,< -15 (early)
+morning,214895,-1.06,< -15 (early)
+afternoon,787499,1.23,-15..-1
+evening/night,400300,1.87,-15..-1
+morning,508081,-0.05,-15..-1
+afternoon,375760,7.58,0..14 (on time)
+evening/night,227768,7.19,0..14 (on time)
+morning,193129,5.1,0..14 (on time)
+afternoon,124969,20.64,15..29
+evening/night,96521,18.14,15..29
+morning,50063,17.17,15..29
+afternoon,91954,39.0,30..59
+evening/night,80651,35.19,30..59
+morning,31027,35.79,30..59
+afternoon,35691,65.0,60..89
+evening/night,33998,60.02,60..89
+morning,11135,62.74,60..89
+afternoon,17932,87.51,90..119
+evening/night,17942,84.05,90..119
+morning,5411,87.44,90..119
+afternoon,15750,118.46,120..179
+evening/night,16134,112.61,120..179
+morning,4516,123.45,120..179
+afternoon,9817,168.33,180+
+evening/night,9000,146.86,180+
+morning,2362,218.79,180+

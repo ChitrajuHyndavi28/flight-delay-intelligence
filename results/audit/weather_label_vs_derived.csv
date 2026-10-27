@@ -1,0 +1,11 @@
+warehouse_label,derived_class,station_days
+Clear,clear,70219
+Clear,moderate,208
+Light,clear,16163
+Light,moderate,84
+Moderate,clear,6903
+Moderate,moderate,13741
+Moderate,severe,5
+Severe,moderate,300
+Severe,severe,5162
+Unknown,unknown,1

@@ -1,0 +1,4 @@
+cluster,airports,delayed_pct,mean_dep_delay_min,cancel_rate_pct,mean_taxi_out_min,adverse_wx_share_pct,weather_gap_pp,evening_share_pct,late_aircraft_share_pct,weather_cause_share_pct,flights,example_airports
+0,35,15.9,6.78,0.94,12.7,10.31,7.58,19.93,47.01,2.9,35846.34,"PHX, SEA, SLC, FLL, SAN, TPA, PDX, STL"
+1,24,21.0,11.21,1.77,17.77,17.45,16.85,24.59,38.2,5.22,126997.29,"ATL, ORD, DFW, DEN, LAX, SFO, IAH, LAS"
+2,54,18.14,8.65,2.33,14.18,20.19,10.72,13.02,39.8,4.52,12220.13,"BNA, CLE, RDU, MKE, IND, CMH, PIT, PBI"

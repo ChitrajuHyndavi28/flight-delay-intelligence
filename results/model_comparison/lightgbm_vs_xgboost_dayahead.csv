@@ -1,0 +1,4 @@
+comparison,mean_diff_pr_auc,ci_lo,ci_hi,verdict,lightgbm_train_s,other_train_s,lightgbm_predict_s,other_predict_s,other_seed_std_pr_auc,lightgbm_seed_std_pr_auc
+"LightGBM minus XGBoost (tuned, ordinal codes)",0.011097679050371963,0.01012301880009913,0.012121732102740302,statistically real and practically meaningful,31.460000000000004,65.48,2.433333333333333,1.17,,0.0013812315519215578
+"LightGBM minus XGBoost (default params, ordinal codes)",0.027314626092549085,0.02612926460727393,0.028461969514362,statistically real and practically meaningful,31.460000000000004,34.98,2.433333333333333,0.56,,0.0013812315519215578
+"LightGBM minus XGBoost (native categoricals, tuned)",-0.003695783211801639,-0.0044582361288748335,-0.0028979785187795105,statistically real but practically negligible (< 0.01),31.460000000000004,28.32,2.433333333333333,0.6,,0.0013812315519215578

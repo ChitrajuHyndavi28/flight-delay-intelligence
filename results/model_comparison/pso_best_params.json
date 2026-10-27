@@ -1,0 +1,50 @@
+{
+ "t60/xgb": {
+  "params": {
+   "max_depth": 9,
+   "learning_rate": 0.054601871785308204,
+   "min_child_weight": 40.04619585632173,
+   "colsample_bytree": 0.47995891832621324,
+   "gamma": 0.10557801779239806,
+   "subsample": 0.9891014339291064
+  },
+  "val_pr_auc_sample": 0.5578208781726707,
+  "minutes": 16.5
+ },
+ "t60/lgb": {
+  "params": {
+   "num_leaves": 164,
+   "learning_rate": 0.05000000000000001,
+   "min_child_samples": 674,
+   "feature_fraction": 0.4,
+   "lambda_l2": 0.010000000000000005,
+   "bagging_fraction": 1.0
+  },
+  "val_pr_auc_sample": 0.5557164365228994,
+  "minutes": 16.2
+ },
+ "dayahead/xgb": {
+  "params": {
+   "max_depth": 9,
+   "learning_rate": 0.05000000000000001,
+   "min_child_weight": 55.713787112993074,
+   "colsample_bytree": 0.4,
+   "gamma": 1.015742053071032,
+   "subsample": 1.0
+  },
+  "val_pr_auc_sample": 0.2727514610461626,
+  "minutes": 9.6
+ },
+ "dayahead/lgb": {
+  "params": {
+   "num_leaves": 78,
+   "learning_rate": 0.09838429534348099,
+   "min_child_samples": 2000,
+   "feature_fraction": 0.7670318679313558,
+   "lambda_l2": 0.8147663745165339,
+   "bagging_fraction": 1.0
+  },
+  "val_pr_auc_sample": 0.27983436588880356,
+  "minutes": 5.3
+ }
+}

@@ -1,0 +1,83 @@
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+Top features by gain:
+                      feature       gain  splits  gain_share_pct
+          prev_leg_dep_delay 4298083.62     798           28.13
+                       route 1887299.39   10710           12.35
+             prev_leg_status 1790507.24     135           11.72
+prev_leg_sched_arr_minus_t60  823872.52     642            5.39
+              sched_dep_hour  783014.97     513            5.12
+                      origin  650827.42    2452            4.26
+                        dest  646548.77    2530            4.23
+            planned_turn_min  621746.91     395            4.07
+          prev_leg_arr_delay  370446.08     206            2.42
+                      d_prcp  328153.26     328            2.15
+                      o_prcp  321054.63     327            2.10
+           leg_number_of_day  310028.51     138            2.03
+                  o_wx_class  298681.28     118            1.95
+                     airline  295277.49     623            1.93
+                week_of_year  276991.48    1019            1.81
+
+Gain by group:
+                   feature_group  gain_share_pct
+Predecessor status/delay (T-60)           42.27
+      Airline / airport / route           24.28
+          Weather (origin+dest)           11.69
+        Schedule turn structure           11.49
+         Time of day / calendar            9.11
+         Historical delay rates            1.01
+            Distance / schedule            0.15
+
+Top mean |SHAP| (log-odds):
+                      feature  mean_abs_shap
+          prev_leg_dep_delay          0.505
+                week_of_year          0.245
+                      d_prcp          0.173
+              sched_dep_hour          0.168
+                       route          0.167
+             prev_leg_status          0.147
+                      origin          0.139
+                      o_prcp          0.138
+          prev_leg_arr_delay          0.123
+prev_leg_sched_arr_minus_t60          0.111
+                        dest          0.106
+                     airline          0.103
+
+Snow x north x winter (counterfactual model effect, +30 mm snowfall & +100 mm snow depth):
+                              group  flights  actual_delay_rate_snow_gt0  actual_delay_rate_no_snow  model_effect_of_30mm_snow_on_P_delay
+Northern origin, December (winter)   161025                      0.4178                     0.1927                                0.0649
+         Southern origin, December   219242                      0.4423                     0.1993                                0.0527
+         Northern origin, November   160381                      0.3787                     0.1412                                0.0649
+         Southern origin, November   213437                      0.6000                     0.1488                                0.0530
+
+Subgroup PR-AUC:
+ model                                                                    decision_tree  lightgbm  logistic_regression  random_forest  xgboost  xgboost_native_tuned  xgboost_tuned
+subgroup                                           flights delayed_rate                                                                                                           
+All test flights                                   932084  0.180                0.6041    0.6388               0.5502         0.6183   0.6357                0.6409         0.6384
+No predecessor (first leg / broken chain)          235496  0.149                0.3304    0.3796               0.3100         0.3663   0.3759                0.3845         0.3818
+Origin snow > 0                                    30259   0.405                0.6943    0.7475               0.6914         0.7280   0.7481                0.7482         0.7526
+Origin weather missing (SJU, STT, ... NaN weather) 6927    0.151                0.5480    0.5871               0.5352         0.5613   0.5909                0.5887         0.5895
+Predecessor 'landed' at T-60                       280440  0.094                0.1764    0.2359               0.1769         0.2209   0.2252                0.2402         0.2307
+Predecessor 'not_departed' at T-60                 15679   0.954                0.9872    0.9913               0.9792         0.9754   0.9929                0.9919         0.9928
+Rare routes (<100 training flights)                10822   0.193                0.5943    0.6288               0.5619         0.6123   0.6236                0.6277         0.6261
+
+Depth-4 rules (highest delay rate first):
+IF prev_leg_status=not_departed AND NOT airline=HA AND distance_miles > 165.0 THEN DELAYED  [train: 98% delayed, n=65,417 | test Nov-Dec: 97% delayed, n=13,684]
+IF NOT prev_leg_status=not_departed AND prev_leg_sched_arr_minus_t60 > 49.5 THEN DELAYED  [train: 88% delayed, n=25,835 | test Nov-Dec: 87% delayed, n=5,425]
+IF prev_leg_status=not_departed AND NOT airline=HA AND distance_miles <= 165.0 THEN DELAYED  [train: 87% delayed, n=8,977 | test Nov-Dec: 88% delayed, n=1,645]
+IF NOT prev_leg_status=landed AND planned_turn_min <= 63.5 AND prev_leg_dep_delay > 31.5 THEN DELAYED  [train: 85% delayed, n=140,186 | test Nov-Dec: 83% delayed, n=30,470]
+IF prev_leg_status=not_departed AND airline=HA THEN DELAYED  [train: 70% delayed, n=3,140 | test Nov-Dec: 56% delayed, n=350]
+IF NOT prev_leg_status=landed AND planned_turn_min > 63.5 AND prev_leg_dep_delay > 31.5 THEN DELAYED  [train: 59% delayed, n=44,421 | test Nov-Dec: 59% delayed, n=10,209]
+IF NOT prev_leg_status=landed AND planned_turn_min <= 43.5 AND 16.5 < prev_leg_dep_delay <= 31.5 THEN DELAYED  [train: 51% delayed, n=77,590 | test Nov-Dec: 51% delayed, n=16,818]
+IF prev_leg_status=landed AND NOT o_wx_class=clear AND prev_leg_dep_delay > 16.5 AND prev_leg_sched_arr_minus_t60 <= -127.5 THEN DELAYED  [train: 44% delayed, n=3,338 | test Nov-Dec: 36% delayed, n=1,060]
+...
+IF NOT prev_leg_status=not_departed AND NOT o_wx_class=clear AND prev_leg_sched_arr_minus_t60 <= 36.5 THEN DELAYED  [train: 23% delayed, n=517,149 | test Nov-Dec: 20% delayed, n=146,104]
+IF prev_leg_status=landed AND o_wx_class=clear AND prev_leg_dep_delay > 16.5 AND prev_leg_sched_arr_minus_t60 > -192.5 THEN on time  [train: 15% delayed, n=31,857 | test Nov-Dec: 14% delayed, n=7,537]
+IF NOT prev_leg_status=not_departed AND o_wx_class=clear AND prev_leg_sched_arr_minus_t60 <= 36.5 THEN on time  [train: 12% delayed, n=2,822,334 | test Nov-Dec: 10% delayed, n=676,037]
+
+Explainability trade-off (test):
+                                     model  roc_auc  pr_auc     f1  precision  recall
+Decision Tree depth 4 (readable features)   0.7232  0.4915 0.5000     0.6669  0.3999
+Decision Tree depth 5 (readable features)   0.7473  0.5291 0.5168     0.6369  0.4348
+                          LightGBM (main)   0.8201  0.6388 0.5612     0.5837  0.5403
+
+LightGBM model-only predict on 932,084 test rows: median 3.5s over 3 runs (cached 'predict_time_s' in the comparison table also includes pandas slicing of the test frame).

@@ -1,0 +1,13 @@
+rows train/val/test = 3,836,893/462,153/932,084; delayed rate 0.202/0.130/0.180; class weights {0: 0.6267513836449428, 1: 2.47236505678157}
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+
+######## stage dayahead ########
+[dayahead] xgboost seed 42: val PR-AUC 0.2691 test 0.3249 train 35s
+[dayahead] dummy_majority seed 42: val PR-AUC 0.1300 test 0.1795 train 0s predict 0s (wall 0s)
+[dayahead] logistic_regression seed 42: val PR-AUC 0.2470 test 0.3196 train 52s predict 2s (wall 55s)
+[dayahead] naive_bayes_gaussian seed 42: val PR-AUC 0.2115 test 0.2935 train 4s predict 0s (wall 5s)
+[dayahead] naive_bayes_categorical seed 42: val PR-AUC 0.2374 test 0.2709 train 6s predict 0s (wall 6s)
+[dayahead] random_forest seed 42: val PR-AUC 0.2686 test 0.3416 train 36s predict 2s (wall 39s)
+[dayahead] knn seed 42: val PR-AUC 0.2220 test 0.2852 train 0s predict 124s (wall 189s)
+[dayahead] decision_tree seed 42: val PR-AUC 0.2176 test 0.2849 train 31s predict 0s (wall 32s)
+stage dayahead done in 361s

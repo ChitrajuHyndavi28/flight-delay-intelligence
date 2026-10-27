@@ -1,0 +1,7 @@
+table,rows
+fact_flight,5819079
+dim_date,365
+dim_airline,14
+dim_airport,323
+dim_route,8609
+dim_weather,112786

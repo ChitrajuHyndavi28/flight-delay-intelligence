@@ -1,0 +1,9 @@
+rows train/val/test = 3,836,893/462,153/932,084; delayed rate 0.202/0.130/0.180; class weights {0: 0.6267513836449428, 1: 2.47236505678157}
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+
+######## stage scalability ########
+{'model': 'lightgbm', 'n_train': 100000, 'train_time_s': 4.2, 'val_pr_auc': np.float64(0.5332), 'note': '300 rounds, tuned params, no early stopping'}
+{'model': 'lightgbm', 'n_train': 500000, 'train_time_s': 7.9, 'val_pr_auc': np.float64(0.5522), 'note': '300 rounds, tuned params, no early stopping'}
+{'model': 'lightgbm', 'n_train': 1000000, 'train_time_s': 11.3, 'val_pr_auc': np.float64(0.5574), 'note': '300 rounds, tuned params, no early stopping'}
+{'model': 'lightgbm', 'n_train': 3836893, 'train_time_s': 28.8, 'val_pr_auc': np.float64(0.564), 'note': '300 rounds, tuned params, no early stopping'}
+stage scalability done in 61s

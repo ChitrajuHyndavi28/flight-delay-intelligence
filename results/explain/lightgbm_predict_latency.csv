@@ -1,0 +1,2 @@
+model,test_rows,predict_seconds_median,per_1000_flights_ms
+"LightGBM (T-60 main, seed 42)",932084,3.502246856689453,3.7574369441911384

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flight Delay Intelligence</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="side" id="side">
+    <a class="brand" href="#/overview" aria-label="Flight Delay Intelligence, overview">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 13.5 21 4l-4.5 16-4.2-5.1L8 18l.6-5.3z" fill="currentColor"/></svg></span>
+      <span><b>Flight Delay</b><br><span class="muted">Intelligence · 2015 US flights</span></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Pages"></nav>
+    <div class="side-foot">
+      <button class="btn small" id="theme" aria-label="Change theme">Theme: system</button>
+      <p class="muted" id="side-note">Local portal · model API checking…</p>
+    </div>
+  </aside>
+  <main id="main" tabindex="-1"><div id="view"><div class="loading">Loading results…</div></div></main>
+</div>
+<div class="tip" id="tip" role="status"></div>
+<script src="d3.min.js"></script>
+<script src="lib.js"></script>
+<script src="pages.js"></script>
+<script src="main.js"></script>
+</body></html>

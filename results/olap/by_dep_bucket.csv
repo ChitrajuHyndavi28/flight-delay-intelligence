@@ -1,0 +1,5 @@
+dep_bucket,flights,on_time_pct,avg_arr_delay_min,avg_dep_delay_min,cancel_rate_pct
+Morning (05-11),2381083,87.2,0.0,4.77,1.41
+Afternoon (12-17),2141110,78.88,6.57,11.37,1.5
+Evening (18-21),1112617,74.16,9.62,14.78,1.94
+Night (22-04),184269,78.74,4.91,10.66,1.47

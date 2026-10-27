@@ -1,0 +1,16 @@
+airport,city,state,flights,avg_dep_delay_min,avg_arr_delay_min,delayed_pct
+ITO,Hilo,HI,5708,-0.89,0.34,8.48
+LIH,Lihue,HI,10487,0.46,-1.01,9.71
+KOA,Kailua/Kona,HI,11052,1.35,-0.24,10.54
+HNL,Honolulu,HI,42946,2.62,0.8,10.8
+ANC,Anchorage,AK,15818,3.32,-0.38,12.57
+OGG,Kahului,HI,20477,3.49,1.07,13.24
+SLC,Salt Lake City,UT,96505,4.75,0.75,13.56
+GEG,Spokane,WA,9440,4.93,2.79,14.03
+PDX,Portland,OR,46777,5.35,1.2,13.64
+MSN,Madison,WI,8830,5.48,3.03,16.33
+TUS,Tucson,AZ,14922,5.76,2.44,15.17
+BUR,Burbank,CA,18527,5.98,3.14,14.54
+CAK,Akron,OH,5974,6.02,-0.07,13.88
+SYR,Syracuse,NY,5447,6.21,0.48,16.71
+SBA,Santa Barbara,CA,5878,6.44,4.95,17.73

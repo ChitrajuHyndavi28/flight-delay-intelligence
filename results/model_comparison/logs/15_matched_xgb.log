@@ -1,0 +1,11 @@
+rows train/val/test = 3,836,893/462,153/932,084; delayed rate 0.202/0.130/0.180; class weights {0: 0.6267513836449428, 1: 2.47236505678157}
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+
+######## stage matched ########
+[t60] xgboost_tuned_matched_rf1M seed 42: val PR-AUC 0.5599 test 0.6373 train 42s
+[t60] xgboost_tuned_matched_knn200k seed 42: val PR-AUC 0.5520 test 0.6293 train 34s
+[t60] xgboost_tuned_matched_rf1M seed 43: val PR-AUC 0.5604 test 0.6371 train 38s
+[t60] xgboost_tuned_matched_knn200k seed 43: val PR-AUC 0.5514 test 0.6294 train 28s
+[t60] xgboost_tuned_matched_rf1M seed 44: val PR-AUC 0.5604 test 0.6384 train 34s
+[t60] xgboost_tuned_matched_knn200k seed 44: val PR-AUC 0.5524 test 0.6308 train 20s
+stage matched done in 209s

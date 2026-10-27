@@ -1,0 +1,31 @@
+reason,antecedent,antecedent_flights,confidence,reason_lift
+airline/carrier,airline=EV & o_high_wind,2104,0.05513,12.07399
+airline/carrier,month=February & airline=EV & o_severe_wx,3941,0.0543,11.89176
+airline/carrier,month=March & airline=EV & o_snow,3391,0.05338,11.68933
+airline/carrier,month=February & airline=EV & d_severe_wx,3949,0.04609,10.09306
+airline/carrier,airline=EV & o_severe_wx & o_snow,9078,0.03911,8.564
+airline/carrier,evening & airline=EV & o_severe_wx,5352,0.03905,8.55202
+airline/carrier,month=March & airline=EV & o_severe_wx,2825,0.03858,8.44981
+airline/carrier,o_severe_wx & o_high_wind,3542,0.03501,7.66676
+airline/carrier,evening & airline=EV & o_snow,4320,0.0338,7.4013
+airline/carrier,airline=MQ & o_freezing & d_severe_wx,3063,0.03297,7.22126
+weather,o_snow & o_high_wind,3359,0.38523,42.77252
+weather,o_severe_wx & o_high_wind,3542,0.38255,42.4748
+weather,airline=MQ & o_snow & d_severe_wx,2795,0.35564,39.48619
+weather,airline=MQ & o_severe_wx & d_severe_wx,2576,0.34938,38.79156
+weather,month=February & airline=MQ & o_severe_wx,2825,0.32814,36.43358
+weather,month=February & airline=MQ & d_severe_wx,2816,0.31783,35.28832
+weather,month=February & weekend & o_high_wind,2331,0.29858,33.15184
+weather,airline=MQ & o_severe_wx & o_snow,6762,0.29163,32.37967
+weather,airline=MQ & o_severe_wx & o_freezing,4072,0.28291,31.41126
+weather,o_high_wind & d_severe_wx,2016,0.28075,31.17213
+national air system,airline=EV & o_severe_wx & o_snow,9078,0.15378,53.62379
+national air system,month=February & airline=EV & o_severe_wx,3941,0.14336,49.99243
+national air system,month=February & airline=EV & d_severe_wx,3949,0.14282,49.80285
+national air system,month=March & airline=EV & d_severe_wx,2833,0.13731,47.88123
+national air system,month=March & airline=EV & o_snow,3391,0.13035,45.45239
+national air system,month=March & airline=EV & o_severe_wx,2825,0.12389,43.20279
+national air system,evening & airline=EV & o_snow,4320,0.10787,37.61529
+national air system,evening & airline=EV & o_severe_wx,5352,0.09847,34.33656
+national air system,evening & airline=EV & d_severe_wx,4962,0.08948,31.20243
+national air system,airline=EV & o_snow,23152,0.08522,29.71672

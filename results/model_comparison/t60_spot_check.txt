@@ -1,0 +1,75 @@
+
+======================================================================================================================
+N841VA  20150202   East->West coast chain (JFK -> SFO -> ...): arrival clock is 3 h behind departure clock
+======================================================================================================================
+LOCAL CLOCKS (each airport's own time) and ABSOLUTE axis (clock of the airport where the aircraft is on the ground)
+leg 1: JFK->SFO  sched dep 10:30 (dep delay -3) actual dep 10:27 | sched arr 14:10 actual arr 14:00 (arr delay -10) | gate-to-gate 393 min, tz shift -3.0 h
+         abs: sched dep 02-02 10:30 | gate-in 02-02 14:00 (dest clock) | gate-out in dest clock 02-02 07:27
+leg 2: SFO->SAN  sched dep 15:05 (dep delay +5) actual dep 15:10 | sched arr 16:30 actual arr 16:32 (arr delay +2) | gate-to-gate 82 min, tz shift +0.0 h
+         abs: sched dep 02-02 15:05 | gate-in 02-02 16:32 (dest clock) | gate-out in dest clock 02-02 15:10
+leg 3: SAN->SFO  sched dep 17:15 (dep delay -1) actual dep 17:14 | sched arr 18:45 actual arr 18:44 (arr delay -1) | gate-to-gate 90 min, tz shift +0.0 h
+         abs: sched dep 02-02 17:15 | gate-in 02-02 18:44 (dest clock) | gate-out in dest clock 02-02 17:14
+
+T-60 STATUS OF THE PREDECESSOR (as seen 60 min before each leg's scheduled departure)
+leg 1: status=no_prev_leg  (no predecessor)
+leg 2: T-60 = 02-02 14:05 | predecessor JFK->SFO: gate-out 02-02 07:27, gate-in 02-02 14:00 => status=landed       prev_arr_delay=-10.0 prev_dep_delay=-3.0 sched_arr-T60=+5 planned_turn=55
+leg 3: T-60 = 02-02 16:15 | predecessor SFO->SAN: gate-out 02-02 15:10, gate-in 02-02 16:32 => status=airborne     prev_arr_delay=NaN prev_dep_delay=5.0 sched_arr-T60=+15 planned_turn=45
+
+Assertions passed: independent pandas re-derivation of absolute times and T-60 status equals the SQL table for every leg.
+
+======================================================================================================================
+N523JB  20150518   Predecessor lands after midnight while the next flight is scheduled before midnight
+======================================================================================================================
+LOCAL CLOCKS (each airport's own time) and ABSOLUTE axis (clock of the airport where the aircraft is on the ground)
+leg 1: PDX->LGB  sched dep 07:00 (dep delay -10) actual dep 06:50 | sched arr 09:19 actual arr 09:07 (arr delay -12) | gate-to-gate 137 min, tz shift +0.0 h
+         abs: sched dep 05-18 07:00 | gate-in 05-18 09:07 (dest clock) | gate-out in dest clock 05-18 06:50
+leg 2: LGB->PDX  sched dep 10:10 (dep delay -1) actual dep 10:09 | sched arr 12:30 actual arr 12:15 (arr delay -15) | gate-to-gate 126 min, tz shift +0.0 h
+         abs: sched dep 05-18 10:10 | gate-in 05-18 12:15 (dest clock) | gate-out in dest clock 05-18 10:09
+leg 3: PDX->LGB  sched dep 13:15 (dep delay -4) actual dep 13:11 | sched arr 15:34 actual arr 15:31 (arr delay -3) | gate-to-gate 140 min, tz shift +0.0 h
+         abs: sched dep 05-18 13:15 | gate-in 05-18 15:31 (dest clock) | gate-out in dest clock 05-18 13:11
+leg 4: LGB->SFO  sched dep 16:20 (dep delay +32) actual dep 16:52 | sched arr 17:42 actual arr 18:09 (arr delay +27) | gate-to-gate 77 min, tz shift +0.0 h
+         abs: sched dep 05-18 16:20 | gate-in 05-18 18:09 (dest clock) | gate-out in dest clock 05-18 16:52
+leg 5: SFO->LAS  sched dep 18:25 (dep delay +36) actual dep 19:01 | sched arr 20:03 actual arr 20:27 (arr delay +24) | gate-to-gate 86 min, tz shift +0.0 h
+         abs: sched dep 05-18 18:25 | gate-in 05-18 20:27 (dest clock) | gate-out in dest clock 05-18 19:01
+leg 6: LAS->SFO  sched dep 20:45 (dep delay +128) actual dep 22:53 | sched arr 22:28 actual arr 00:19 (arr delay +111) | gate-to-gate 86 min, tz shift +0.0 h
+         abs: sched dep 05-18 20:45 | gate-in 05-19 00:19 (dest clock) | gate-out in dest clock 05-18 22:53
+leg 7: SFO->FLL  sched dep 23:20 (dep delay +111) actual dep 01:11 | sched arr 07:43 actual arr 09:41 (arr delay +118) | gate-to-gate 330 min, tz shift +3.0 h
+         abs: sched dep 05-18 23:20 | gate-in 05-19 09:41 (dest clock) | gate-out in dest clock 05-19 04:11
+
+T-60 STATUS OF THE PREDECESSOR (as seen 60 min before each leg's scheduled departure)
+leg 1: status=no_prev_leg  (no predecessor)
+leg 2: T-60 = 05-18 09:10 | predecessor PDX->LGB: gate-out 05-18 06:50, gate-in 05-18 09:07 => status=landed       prev_arr_delay=-12.0 prev_dep_delay=-10.0 sched_arr-T60=+9 planned_turn=51
+leg 3: T-60 = 05-18 12:15 | predecessor LGB->PDX: gate-out 05-18 10:09, gate-in 05-18 12:15 => status=landed       prev_arr_delay=-15.0 prev_dep_delay=-1.0 sched_arr-T60=+15 planned_turn=45
+leg 4: T-60 = 05-18 15:20 | predecessor PDX->LGB: gate-out 05-18 13:11, gate-in 05-18 15:31 => status=airborne     prev_arr_delay=NaN prev_dep_delay=-4.0 sched_arr-T60=+14 planned_turn=46
+leg 5: T-60 = 05-18 17:25 | predecessor LGB->SFO: gate-out 05-18 16:52, gate-in 05-18 18:09 => status=airborne     prev_arr_delay=NaN prev_dep_delay=32.0 sched_arr-T60=+17 planned_turn=43
+leg 6: T-60 = 05-18 19:45 | predecessor SFO->LAS: gate-out 05-18 19:01, gate-in 05-18 20:27 => status=airborne     prev_arr_delay=NaN prev_dep_delay=36.0 sched_arr-T60=+18 planned_turn=42
+leg 7: T-60 = 05-18 22:20 | predecessor LAS->SFO: gate-out 05-18 22:53, gate-in 05-19 00:19 => status=not_departed prev_arr_delay=NaN prev_dep_delay=NaN sched_arr-T60=+8 planned_turn=52
+
+Assertions passed: independent pandas re-derivation of absolute times and T-60 status equals the SQL table for every leg.
+
+======================================================================================================================
+N470AA  20150909   A full day with all four T-60 statuses
+======================================================================================================================
+LOCAL CLOCKS (each airport's own time) and ABSOLUTE axis (clock of the airport where the aircraft is on the ground)
+leg 1: CMH->DFW  sched dep 06:10 (dep delay -7) actual dep 06:03 | sched arr 07:58 actual arr 07:48 (arr delay -10) | gate-to-gate 165 min, tz shift -1.0 h
+         abs: sched dep 09-09 06:10 | gate-in 09-09 07:48 (dest clock) | gate-out in dest clock 09-09 05:03
+leg 2: DFW->OKC  sched dep 08:55 (dep delay +13) actual dep 09:08 | sched arr 09:57 actual arr 10:08 (arr delay +11) | gate-to-gate 60 min, tz shift +0.0 h
+         abs: sched dep 09-09 08:55 | gate-in 09-09 10:08 (dest clock) | gate-out in dest clock 09-09 09:08
+leg 3: OKC->DFW  sched dep 10:45 (dep delay -9) actual dep 10:36 | sched arr 11:52 actual arr 12:41 (arr delay +49) | gate-to-gate 125 min, tz shift +0.0 h
+         abs: sched dep 09-09 10:45 | gate-in 09-09 12:41 (dest clock) | gate-out in dest clock 09-09 10:36
+leg 4: DFW->STL  sched dep 11:46 (dep delay +110) actual dep 13:36 | sched arr 13:28 actual arr 15:15 (arr delay +107) | gate-to-gate 99 min, tz shift +0.0 h
+         abs: sched dep 09-09 11:46 | gate-in 09-09 15:15 (dest clock) | gate-out in dest clock 09-09 13:36
+leg 5: STL->DFW  sched dep 14:10 (dep delay +101) actual dep 15:51 | sched arr 16:05 actual arr 17:42 (arr delay +97) | gate-to-gate 111 min, tz shift +0.0 h
+         abs: sched dep 09-09 14:10 | gate-in 09-09 17:42 (dest clock) | gate-out in dest clock 09-09 15:51
+leg 6: DFW->TPA  sched dep 18:20 (dep delay +31) actual dep 18:51 | sched arr 21:46 actual arr 22:14 (arr delay +28) | gate-to-gate 143 min, tz shift +1.0 h
+         abs: sched dep 09-09 18:20 | gate-in 09-09 22:14 (dest clock) | gate-out in dest clock 09-09 19:51
+
+T-60 STATUS OF THE PREDECESSOR (as seen 60 min before each leg's scheduled departure)
+leg 1: status=no_prev_leg  (no predecessor)
+leg 2: T-60 = 09-09 07:55 | predecessor CMH->DFW: gate-out 09-09 05:03, gate-in 09-09 07:48 => status=landed       prev_arr_delay=-10.0 prev_dep_delay=-7.0 sched_arr-T60=+3 planned_turn=57
+leg 3: T-60 = 09-09 09:45 | predecessor DFW->OKC: gate-out 09-09 09:08, gate-in 09-09 10:08 => status=airborne     prev_arr_delay=NaN prev_dep_delay=13.0 sched_arr-T60=+12 planned_turn=48
+leg 4: T-60 = 09-09 10:46 | predecessor OKC->DFW: gate-out 09-09 10:36, gate-in 09-09 12:41 => status=airborne     prev_arr_delay=NaN prev_dep_delay=-9.0 sched_arr-T60=+66 planned_turn=-6
+leg 5: T-60 = 09-09 13:10 | predecessor DFW->STL: gate-out 09-09 13:36, gate-in 09-09 15:15 => status=not_departed prev_arr_delay=NaN prev_dep_delay=NaN sched_arr-T60=+18 planned_turn=42
+leg 6: T-60 = 09-09 17:20 | predecessor STL->DFW: gate-out 09-09 15:51, gate-in 09-09 17:42 => status=airborne     prev_arr_delay=NaN prev_dep_delay=101.0 sched_arr-T60=-75 planned_turn=135
+
+Assertions passed: independent pandas re-derivation of absolute times and T-60 status equals the SQL table for every leg.

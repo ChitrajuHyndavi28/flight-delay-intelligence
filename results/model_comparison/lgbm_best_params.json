@@ -1,0 +1,1 @@
+{"best_params": {"num_leaves": 63, "learning_rate": 0.05, "min_child_samples": 100, "feature_fraction": 0.6}, "tuned_on": "1,000,000-row stratified train sample, selected on validation PR-AUC only"}

@@ -1,0 +1,4 @@
+wx_class,delay_rate_pct,avg_arr_delay_min,cancel_rate_pct,disrupted_rate_pct,flights
+clear,17.024,2.759,1.069,18.123,4439220.0
+moderate,27.65,12.506,3.058,30.094,628787.0
+severe,40.365,28.066,8.981,45.91,227128.0

@@ -1,0 +1,8 @@
+rows train/val/test = 3,836,893/462,153/932,084; delayed rate 0.202/0.130/0.180; class weights {0: 0.6267513836449428, 1: 2.47236505678157}
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+
+######## stage main ########
+[t60] xgboost seed 42: val PR-AUC 0.5610 test 0.6357 train 107s
+[t60] xgboost seed 43: val PR-AUC 0.5566 test 0.6333 train 98s
+[t60] xgboost seed 44: val PR-AUC 0.5602 test 0.6359 train 139s
+stage main done in 348s

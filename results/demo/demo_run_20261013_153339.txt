@@ -1,0 +1,43 @@
+LIVE DEMO  -  Flight Delay & Airport Operations Intelligence   (2026-10-13 15:33:39)
+
+================================================================================================
+STAGE 2 - LIVE ALGORITHM COMPARISON   (200,000 train flights / 100,000 test flights, fixed seed 42)
+================================================================================================
+(loaded cached T-60 feature matrix: 5,231,130 flights x 43 features in 1.3s)
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+Task: will a flight arrive 15+ min late?  Prediction moment T-60 (1 h before departure), 43 features, balanced class weights.
+Train: Jan-Aug sample | Test: Nov-Dec sample | Sep sample (50,000) is used only for early stopping and the F1 threshold (no tuning live).
+
+[1/9] training Majority dummy ... done in   0.0 s   PR-AUC 0.180
+[2/9] training Naive Bayes (Gaussian) ... done in   0.3 s   PR-AUC 0.372
+[3/9] training Naive Bayes (Categorical) ... done in   0.5 s   PR-AUC 0.448
+[4/9] training Logistic Regression ... done in   2.8 s   PR-AUC 0.548
+[5/9] training Decision Tree ... done in   1.9 s   PR-AUC 0.587
+[6/9] training KNN (k=50) ... done in  15.3 s   PR-AUC 0.482
+[7/9] training Random Forest ... done in   4.9 s   PR-AUC 0.604
+[8/9] training XGBoost (tuned) ... done in   5.7 s   PR-AUC 0.627
+[9/9] training LightGBM ... done in   2.9 s   PR-AUC 0.621
+
+RESULT (test flights Nov-Dec, ranked by PR-AUC):
+ rank                     model PR-AUC  lift ROC-AUC    F1 train time        
+    1           XGBoost (tuned)  0.627 3.49x   0.811 0.551      5.7 s <-- TOP
+    2                  LightGBM  0.621 3.46x   0.807 0.548      2.9 s        
+    3             Random Forest  0.604 3.37x   0.806 0.541      4.9 s        
+    4             Decision Tree  0.587 3.27x   0.776 0.523      1.9 s        
+    5       Logistic Regression  0.548 3.05x   0.779 0.506      2.8 s        
+    6                KNN (k=50)  0.482 2.69x   0.741 0.467     15.3 s        
+    7 Naive Bayes (Categorical)  0.448 2.50x   0.727 0.432      0.5 s        
+    8    Naive Bayes (Gaussian)  0.372 2.07x   0.719 0.435      0.3 s        
+    9            Majority dummy  0.180 1.00x   0.500 0.000      0.0 s        
+
+Base rate of the test sample: 18.0% of flights arrive 15+ min late  ->  a model that ignores every feature scores PR-AUC = 0.180.
+Full-data results (all Jan-Aug training rows): see results/model_comparison/comparison_table.csv
+Table saved to results/demo/live_comparison.csv
+
+================================================================================================
+RUNTIME
+================================================================================================
+  Stage 2: Live algorithm comparison      36.4 s
+  Total: 36.4 s
+
+(full output saved to results/demo/demo_run_20261013_153339.txt)

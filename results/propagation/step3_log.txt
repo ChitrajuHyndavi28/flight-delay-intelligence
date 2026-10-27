@@ -1,0 +1,183 @@
+=== Step 3 funnel ===
+
+--- 3_funnel ---
+                       stage   flights  pct_of_flights_with_tail
+           flights_with_tail 5804358.0                     100.0
+       has_prev_leg_same_day 4439529.0                      76.5
+              prev_leg_flown 4375805.0                      75.4
+continuity_ok_dest_eq_origin 4326737.0                      74.5
+                analysis_set 3917656.0                      67.5
+                 feature_set 3693636.0                      63.6
+ continuity_ok_but_dropped_known_airports  prev_arrived_after_sched_dep_not_in_feature_set
+                                  39893.0                                         224020.0
+Tail-days with ties in scheduled departure are broken by flight_number, flight_key (~1,300 rows).
+
+=== A. Departure delay vs previous-leg arrival delay ===
+
+--- 3A_dep_delay_vs_incoming_delay ---
+ flights  mean_incoming_delay  mean_dep_delay  median_dep_delay  pct_dep_delayed15  se_mean incoming_delay_bin
+  741649                -22.1            0.04              -3.0               6.62    0.023      < -15 (early)
+ 1695880                 -8.1            1.00              -3.0               7.47    0.015            -15..-1
+  796657                  5.5            6.87               1.0              16.52    0.025    0..14 (on time)
+  271553                 20.9           19.11              16.0              54.14    0.053             15..29
+  203632                 41.8           37.00              35.0              83.18    0.069             30..59
+   80824                 72.7           62.59              65.0              89.11    0.135             60..89
+   41285                103.0           86.00              94.0              89.52    0.234            90..119
+   36400                144.2          116.49             129.0              89.84    0.323           120..179
+   21179                253.7          164.83             186.0              84.37    0.805               180+
+Baseline: first leg of the day (no incoming aircraft): n=1,232,636, mean dep delay 5.03 min, 10.91% delayed >= 15
+
+--- 3A_share_of_departure_delays_after_late_inbound ---
+ dep_delayed15_flights_leg2plus_in_analysis_set  after_late_inbound  pct_after_late_inbound
+                                         783443            475956.0                    60.8
+
+=== B. Turnaround buffer: how much of an incoming delay does a long turn absorb? ===
+
+--- 3B_buffer_absorption ---
+planned_buffer_min incoming_delay  flights  mean_incoming_delay  mean_dep_delay  pct_dep_delayed15  absorbed_min  pct_absorbed
+               <30    < 15 (none)   151626                 -6.4            4.31               16.4           NaN           NaN
+               <30          15-29    12057                 20.9           29.64               78.4         -8.74         -41.8
+               <30          30-59     9582                 42.0           51.03              100.0         -9.03         -21.5
+               <30         60-119     5631                 82.2           92.31              100.0        -10.11         -12.3
+               <30           120+     2091                174.0          174.97               97.3         -0.97          -0.6
+             30-44    < 15 (none)  1218421                 -7.1            1.85                8.9           NaN           NaN
+             30-44          15-29   105244                 20.9           24.03               73.2         -3.13         -15.0
+             30-44          30-59    78979                 41.7           45.35               99.4         -3.65          -8.8
+             30-44         60-119    43682                 82.3           86.15              100.0         -3.85          -4.7
+             30-44           120+    16825                172.7          176.42               99.8         -3.72          -2.2
+             45-59    < 15 (none)   988520                 -8.4            1.97                8.9           NaN           NaN
+             45-59          15-29    79325                 20.9           19.78               54.3          1.12           5.4
+             45-59          30-59    55988                 41.6           40.56               94.2          1.04           2.5
+             45-59         60-119    31564                 82.6           82.27              100.0          0.33           0.4
+             45-59           120+    12792                174.2          174.84               99.8         -0.64          -0.4
+             60-89    < 15 (none)   583150                 -8.8            1.65                8.4           NaN           NaN
+             60-89          15-29    49432                 20.9           10.56               26.1         10.34          49.5
+             60-89          30-59    35943                 41.5           26.26               64.7         15.24          36.7
+             60-89         60-119    19046                 82.1           66.18               98.5         15.92          19.4
+             60-89           120+     7290                173.0          156.86               99.4         16.14           9.3
+            90-119    < 15 (none)   112879                 -9.0            1.62                8.4           NaN           NaN
+            90-119          15-29    10218                 21.1            5.67               14.6         15.43          73.1
+            90-119          30-59     9433                 42.5            9.95               24.1         32.55          76.6
+            90-119         60-119     6848                 82.7           34.60               71.5         48.10          58.2
+            90-119           120+     2472                172.0          122.97               99.6         49.03          28.5
+           120-179    < 15 (none)    77201                 -8.8            2.33                9.2           NaN           NaN
+           120-179          15-29     7351                 21.2            5.61               14.4         15.59          73.5
+           120-179          30-59     7254                 43.0            7.71               17.1         35.29          82.1
+           120-179         60-119     8929                 86.6           14.20               29.9         72.40          83.6
+           120-179           120+     4720                169.3           72.93               87.9         96.37          56.9
+              180+    < 15 (none)   102389                 -8.9            9.94               20.2           NaN           NaN
+              180+          15-29     7926                 20.8           14.19               25.4          6.61          31.8
+              180+          30-59     6453                 42.5           15.34               27.1         27.16          63.9
+              180+         60-119     6409                 86.8           16.42               27.8         70.38          81.1
+              180+           120+    11389                231.4           32.40               44.9        199.00          86.0
+
+=== C. Delay through the aircraft's day ===
+
+--- 3C_by_leg_number ---
+ leg  flights  mean_dep_delay  mean_arr_delay  pct_arr_delayed15  mean_ground_change_late_inbound  mean_air_change leg_label
+   1  1232636            5.03            0.04              12.99                              NaN            -4.99         1
+   2  1137290            8.10            2.86              16.88                           -18.03            -5.24         2
+   3   977359           10.07            4.97              19.45                            -6.11            -5.10         3
+   4   786216           12.30            7.43              22.42                            -8.52            -4.87         4
+   5   522729           13.72            9.53              24.94                            -3.84            -4.20         5
+   6   333789           14.79           10.60              26.05                            -8.49            -4.20         6
+   7   136851           16.43           13.35              29.40                            -4.17            -3.08         7
+   8   104260           13.79           11.53              26.21                           -10.21            -2.26        8+
+
+--- 3C_persistence_after_leg1 ---
+               leg1_status  leg  flights  mean_arr_delay
+  leg 1 arrived 15-59 late    1   113328           29.12
+  leg 1 arrived 15-59 late    2    97442           19.91
+  leg 1 arrived 15-59 late    3    77673           18.69
+  leg 1 arrived 15-59 late    4    58344           17.97
+  leg 1 arrived 15-59 late    5    36507           19.41
+  leg 1 arrived 15-59 late    6    21540           19.25
+leg 1 arrived 60+ min late    1    46763          143.76
+leg 1 arrived 60+ min late    2    37027           75.60
+leg 1 arrived 60+ min late    3    27071           58.49
+leg 1 arrived 60+ min late    4    19232           45.41
+leg 1 arrived 60+ min late    5    10691           43.97
+leg 1 arrived 60+ min late    6     6181           37.06
+             leg 1 on time    1  1072545           -9.29
+             leg 1 on time    2   993144           -1.95
+             leg 1 on time    3   863081            1.70
+             leg 1 on time    4   700245            5.22
+             leg 1 on time    5   469083            7.70
+             leg 1 on time    6   301523            9.17
+
+=== D. Who absorbs vs amplifies incoming delay? ===
+654,873 turns with incoming delay >= 15 min (analysis set)
+
+--- 3D_airline_absorption ---
+airline  turns  mean_incoming_delay  mean_dep_delay  absorbed_min  observed_minus_expected   se  pct_absorbed
+     OO  74462                56.76           41.00         15.76                    -8.23 0.12         27.76
+     HA   5616                34.27           23.47         10.80                    -7.96 0.33         31.51
+     EV  71501                57.08           42.20         14.87                    -4.90 0.13         26.06
+     AS  13674                44.94           28.39         16.55                    -3.96 0.21         36.82
+     MQ  40604                56.60           40.98         15.62                    -3.11 0.18         27.59
+     US  23215                45.88           31.66         14.22                    -2.45 0.18         31.00
+     WN 151249                47.63           47.32          0.31                     0.49 0.06          0.66
+     F9  15885                62.29           54.38          7.91                     2.19 0.33         12.70
+     AA  68973                51.45           38.89         12.56                     2.34 0.17         24.41
+     VX   6751                51.37           42.71          8.66                     2.55 0.36         16.85
+     DL  70313                54.22           42.55         11.67                     2.80 0.15         21.52
+     NK  22809                59.45           56.79          2.66                     3.11 0.21          4.48
+     B6  33575                56.23           55.78          0.46                     5.80 0.19          0.81
+     UA  56246                58.91           51.98          6.93                     8.79 0.16         11.76
+
+--- 3D_airport_absorption_best10_worst10 ---
+airport  turns  mean_incoming_delay  mean_dep_delay  absorbed_min  observed_minus_expected   se  pct_absorbed
+    ITO    504                36.04           29.41          6.63                   -12.38 0.60         18.39
+    GRK    523                52.66           47.76          4.90                   -11.21 1.29          9.30
+    SBA    761                52.19           45.27          6.92                   -10.16 1.09         13.26
+    MSN   1106                53.23           46.42          6.81                    -9.24 0.86         12.79
+    BUR   2220                46.87           43.47          3.40                    -8.84 0.47          7.25
+    MOB    621                49.24           45.65          3.59                    -8.23 1.19          7.29
+    MAF   1045                48.91           45.54          3.37                    -8.06 0.76          6.89
+    LFT    634                50.49           46.75          3.74                    -7.58 1.45          7.41
+    CRP    734                48.32           45.16          3.16                    -7.40 1.02          6.53
+    AMA    520                45.79           43.49          2.29                    -6.10 1.47          5.01
+    MDW   9978                50.53           48.39          2.14                     4.22 0.26          4.24
+    MIA   7674                50.54           37.72         12.82                     4.28 0.39         25.37
+    IAD   3523                56.20           52.09          4.11                     4.35 0.62          7.32
+    EWR  11652                61.02           52.79          8.23                     4.80 0.34         13.49
+    STT    735                58.57           56.40          2.17                     5.26 2.33          3.71
+    FLL   9044                52.53           49.65          2.88                     5.61 0.37          5.49
+    BWI  10215                49.97           52.18         -2.21                     6.10 0.35         -4.42
+    MCO  14301                53.82           54.03         -0.21                     6.22 0.36         -0.39
+    JFK   9195                64.38           54.62          9.76                     7.25 0.43         15.16
+    PBI   3246                53.39           60.08         -6.69                     8.41 0.69        -12.53
+airports with >= 500 delayed-inbound turns: 121
+
+=== E. Validation vs DOT late_aircraft_delay_min ===
+
+--- 3E_validation_vs_dot_by_incoming_bin ---
+ delayed_arrivals  pct_dot_late_aircraft  mean_late_aircraft_min  mean_arr_delay  late_aircraft_share_of_delay_pct our_incoming_delay
+           347938                   23.9                     2.6            42.4                               6.2        < 15 (none)
+           113491                   86.4                    14.3            36.6                              39.1              15-29
+           152188                   92.9                    28.0            44.2                              63.3              30-59
+           107550                   93.6                    58.4            76.2                              76.6             60-119
+            50129                   92.1                   123.7           149.6                              82.7               120+
+
+--- 3E_first_leg_check ---
+                                         group_  delayed_arrivals  pct_dot_late_aircraft  mean_late_aircraft_min
+first leg of the day (no previous leg that day)            160091                   10.5                     5.6
+
+--- 3E_agreement_with_dot ---
+ delayed_arrivals_in_analysis_set  both_flag  ours_only  dot_only  neither  agreement_pct  p_dot_given_ours  p_ours_given_dot
+                           771296     386160      37198     83275   264663           84.4              91.2              82.3
+
+--- 3E_correlations ---
+ pearson_incoming_vs_late_aircraft  pearson_incoming_vs_dep_delay      n
+                             0.827                          0.574 771296
+
+--- 3E_late_aircraft_minutes_coverage ---
+ dot_late_aircraft_minutes_all  in_flights_with_late_inbound_in_our_data  share_pct
+                    23767674.0                                18364487.0       77.3
+
+=== F. Candidate features for Step 4 (table propagation_features) ===
+
+--- 3F_feature_coverage ---
+   rows  prev_leg_arr_delay_nonnull  turnaround_min_nonnull  pct_with_feature  min_turnaround  mean_prev_arr_delay
+5804358                     3693636                 3693636              63.6             0.0                -2.79
+saved: /Users/hyndavi/Desktop/flight/results/propagation/propagation_features.parquet

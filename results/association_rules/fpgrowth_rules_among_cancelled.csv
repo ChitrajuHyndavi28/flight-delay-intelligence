@@ -1,0 +1,31 @@
+antecedents,consequents,support,confidence,lift
+d_clear & o_above_0C & o_clear,cancelled_airline,0.1619,0.5498,1.9795
+d_clear & o_clear,cancelled_airline,0.17,0.5312,1.9127
+d_clear & o_clear & o_normal_wind,cancelled_airline,0.17,0.5312,1.9127
+d_clear & o_clear & o_nosnow,cancelled_airline,0.17,0.5312,1.9127
+d_clear & o_clear & weekday,cancelled_airline,0.1338,0.5286,1.9032
+Short (<=500) & d_clear & o_clear,cancelled_airline,0.088,0.5283,1.9021
+d_clear & morning & o_nosnow,cancelled_airline,0.0867,0.4986,1.7953
+d_clear & o_above_0C & o_nosnow,cancelled_airline,0.1909,0.4764,1.7152
+d_clear & morning & o_above_0C,cancelled_airline,0.0847,0.4705,1.6941
+d_clear & o_normal_wind & o_nosnow,cancelled_airline,0.1978,0.4667,1.6803
+d_clear & o_nosnow & weekday,cancelled_airline,0.1552,0.4655,1.6761
+Short (<=500) & d_clear & o_nosnow,cancelled_airline,0.0997,0.4632,1.6676
+d_clear & o_nosnow,cancelled_airline,0.1994,0.4622,1.6639
+Short (<=500) & d_clear & o_above_0C,cancelled_airline,0.0972,0.4495,1.6185
+morning & o_above_0C & o_clear,cancelled_airline,0.0864,0.443,1.5949
+Short (<=500) & o_above_0C & o_clear,cancelled_airline,0.097,0.4371,1.5739
+d_clear & o_above_0C & o_normal_wind,cancelled_airline,0.1946,0.4346,1.5646
+d_clear & o_above_0C & weekday,cancelled_airline,0.1524,0.4315,1.5537
+Medium (501-1500) & d_clear & o_nosnow,cancelled_airline,0.08,0.4313,1.553
+d_clear & o_above_0C,cancelled_airline,0.1962,0.4303,1.5493
+Short (<=500) & o_clear & weekday,cancelled_airline,0.0824,0.4194,1.51
+Short (<=500) & d_clear & weekday,cancelled_airline,0.0838,0.4187,1.5077
+Short (<=500) & d_clear & o_normal_wind,cancelled_airline,0.104,0.4182,1.5056
+Short (<=500) & o_clear,cancelled_airline,0.1031,0.4148,1.4935
+Short (<=500) & o_clear & o_nosnow,cancelled_airline,0.1031,0.4148,1.4935
+Short (<=500) & o_clear & o_normal_wind,cancelled_airline,0.1031,0.4148,1.4935
+Short (<=500) & d_clear,cancelled_airline,0.1048,0.4147,1.4932
+morning & o_clear,cancelled_airline,0.0917,0.4146,1.4926
+morning & o_clear & o_nosnow,cancelled_airline,0.0917,0.4146,1.4926
+morning & o_clear & o_normal_wind,cancelled_airline,0.0917,0.4146,1.4926

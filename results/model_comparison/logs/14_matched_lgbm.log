@@ -1,0 +1,11 @@
+rows train/val/test = 3,836,893/462,153/932,084; delayed rate 0.202/0.130/0.180; class weights {0: 0.6267513836449428, 1: 2.47236505678157}
+[leakage assertion] OK: 43 features, none forbidden; 0 predecessor values use an event after T-60
+
+######## stage matched ########
+[t60] lightgbm_matched_rf1M seed 42: val PR-AUC 0.5578 test PR-AUC 0.6332 train 21s iters 347
+[t60] lightgbm_matched_knn200k seed 42: val PR-AUC 0.5433 test PR-AUC 0.6222 train 5s iters 117
+[t60] lightgbm_matched_rf1M seed 43: val PR-AUC 0.5557 test PR-AUC 0.6329 train 12s iters 174
+[t60] lightgbm_matched_knn200k seed 43: val PR-AUC 0.5419 test PR-AUC 0.6216 train 5s iters 121
+[t60] lightgbm_matched_rf1M seed 44: val PR-AUC 0.5569 test PR-AUC 0.6339 train 16s iters 257
+[t60] lightgbm_matched_knn200k seed 44: val PR-AUC 0.5419 test PR-AUC 0.6231 train 56s iters 155
+stage matched done in 138s

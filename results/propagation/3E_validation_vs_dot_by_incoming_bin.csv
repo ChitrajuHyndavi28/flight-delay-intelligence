@@ -1,0 +1,6 @@
+delayed_arrivals,pct_dot_late_aircraft,mean_late_aircraft_min,mean_arr_delay,late_aircraft_share_of_delay_pct,our_incoming_delay
+347938,23.9,2.6,42.4,6.2,< 15 (none)
+113491,86.4,14.3,36.6,39.1,15-29
+152188,92.9,28.0,44.2,63.3,30-59
+107550,93.6,58.4,76.2,76.6,60-119
+50129,92.1,123.7,149.6,82.7,120+

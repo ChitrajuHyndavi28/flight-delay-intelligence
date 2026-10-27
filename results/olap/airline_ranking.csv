@@ -1,0 +1,15 @@
+airline,airline_name,flights,on_time_pct,avg_arr_delay_min,avg_dep_delay_min,cancel_rate_pct
+HA,Hawaiian Airlines Inc.,76272,88.67,2.02,0.47,0.22
+AS,Alaska Airlines Inc.,172521,86.96,-0.98,1.72,0.39
+DL,Delta Air Lines Inc.,875881,86.44,0.19,7.31,0.44
+AA,American Airlines Inc.,725984,81.73,3.45,8.83,1.5
+OO,Skywest Airlines Inc.,588353,81.31,5.85,7.74,1.69
+US,US Airways Inc.,198715,81.18,3.71,6.08,2.05
+WN,Southwest Airlines Co.,1261855,80.95,4.37,10.52,1.27
+VX,Virgin America,61903,80.77,4.74,8.99,0.86
+EV,Atlantic Southeast Airlines,571977,80.32,6.59,8.62,2.66
+UA,United Air Lines Inc.,515723,79.38,5.43,14.33,1.27
+MQ,American Eagle Airlines Inc.,294632,78.28,6.46,9.97,5.1
+B6,JetBlue Airways,267048,77.42,6.68,11.44,1.6
+F9,Frontier Airlines Inc.,90836,73.84,12.5,13.3,0.65
+NK,Spirit Air Lines,117379,70.29,14.47,15.88,1.71

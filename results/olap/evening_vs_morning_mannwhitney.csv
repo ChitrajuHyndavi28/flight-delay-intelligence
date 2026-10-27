@@ -1,0 +1,17 @@
+metric,value
+n_evening,1088433.0
+n_morning,2341610.0
+median_evening,0.0
+median_morning,-3.0
+mean_evening,14.782027244567871
+mean_morning,4.770898818969727
+mean_diff_min,10.011128425598145
+pct_dep_delayed15_evening,27.02757082888887
+pct_dep_delayed15_morning,11.342751354837057
+U,1560869608474.5
+p_value,0.0
+CLES_prob_evening_worse,0.6124214027152464
+cliffs_delta_exact_2U/(n1n2)-1,0.22484280543049273
+delta_boot95_lo_fullsize_200,0.22355513977482291
+delta_boot95_hi_fullsize_200,0.2262220705069439
+cohens_d_raw,0.2706361413002014

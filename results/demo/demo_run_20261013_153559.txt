@@ -1,0 +1,16 @@
+LIVE DEMO  -  Flight Delay & Airport Operations Intelligence   (2026-10-13 15:35:59)
+
+================================================================================================
+STAGE 3 - LIVE PREDICTION   (saved full-data T-60 LightGBM model, 5 real flights from Nov-Dec)
+================================================================================================
+
+!! Stage 3 (Live prediction) could not run: FileNotFoundError: models/lightgbm_t60.txt missing - the demo never trains the full model; restore it from the project backup
+   Saved outputs from earlier runs are in results/demo/ (live_comparison.csv, demo_run_*.txt). Error details: demo_error_stage3_20261013_153559.txt
+
+================================================================================================
+RUNTIME
+================================================================================================
+  Stage 3: Live prediction                 0.1 s
+  Total: 0.1 s
+
+(full output saved to results/demo/demo_run_20261013_153559.txt)

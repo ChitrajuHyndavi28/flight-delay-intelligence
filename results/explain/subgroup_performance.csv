@@ -1,0 +1,50 @@
+subgroup,flights,delayed_rate,model,pr_auc,roc_auc
+All test flights,932084,0.18,lightgbm,0.6388,0.8201
+All test flights,932084,0.18,xgboost_tuned,0.6384,0.8184
+All test flights,932084,0.18,xgboost_native_tuned,0.6409,0.8214
+All test flights,932084,0.18,xgboost,0.6357,0.8166
+All test flights,932084,0.18,logistic_regression,0.5502,0.7806
+All test flights,932084,0.18,random_forest,0.6183,0.8126
+All test flights,932084,0.18,decision_tree,0.6041,0.7929
+"Origin weather missing (SJU, STT, ... NaN weather)",6927,0.151,lightgbm,0.5871,0.808
+"Origin weather missing (SJU, STT, ... NaN weather)",6927,0.151,xgboost_tuned,0.5895,0.8121
+"Origin weather missing (SJU, STT, ... NaN weather)",6927,0.151,xgboost_native_tuned,0.5887,0.8147
+"Origin weather missing (SJU, STT, ... NaN weather)",6927,0.151,xgboost,0.5909,0.8101
+"Origin weather missing (SJU, STT, ... NaN weather)",6927,0.151,logistic_regression,0.5352,0.7765
+"Origin weather missing (SJU, STT, ... NaN weather)",6927,0.151,random_forest,0.5613,0.8062
+"Origin weather missing (SJU, STT, ... NaN weather)",6927,0.151,decision_tree,0.548,0.7642
+Origin snow > 0,30259,0.405,lightgbm,0.7475,0.7747
+Origin snow > 0,30259,0.405,xgboost_tuned,0.7526,0.7776
+Origin snow > 0,30259,0.405,xgboost_native_tuned,0.7482,0.7753
+Origin snow > 0,30259,0.405,xgboost,0.7481,0.774
+Origin snow > 0,30259,0.405,logistic_regression,0.6914,0.7334
+Origin snow > 0,30259,0.405,random_forest,0.728,0.7684
+Origin snow > 0,30259,0.405,decision_tree,0.6943,0.7321
+Rare routes (<100 training flights),10822,0.193,lightgbm,0.6288,0.8092
+Rare routes (<100 training flights),10822,0.193,xgboost_tuned,0.6261,0.8076
+Rare routes (<100 training flights),10822,0.193,xgboost_native_tuned,0.6277,0.8072
+Rare routes (<100 training flights),10822,0.193,xgboost,0.6236,0.8019
+Rare routes (<100 training flights),10822,0.193,logistic_regression,0.5619,0.771
+Rare routes (<100 training flights),10822,0.193,random_forest,0.6123,0.802
+Rare routes (<100 training flights),10822,0.193,decision_tree,0.5943,0.7826
+Predecessor 'not_departed' at T-60,15679,0.954,lightgbm,0.9913,0.8709
+Predecessor 'not_departed' at T-60,15679,0.954,xgboost_tuned,0.9928,0.8843
+Predecessor 'not_departed' at T-60,15679,0.954,xgboost_native_tuned,0.9919,0.8763
+Predecessor 'not_departed' at T-60,15679,0.954,xgboost,0.9929,0.8877
+Predecessor 'not_departed' at T-60,15679,0.954,logistic_regression,0.9792,0.7322
+Predecessor 'not_departed' at T-60,15679,0.954,random_forest,0.9754,0.7102
+Predecessor 'not_departed' at T-60,15679,0.954,decision_tree,0.9872,0.8456
+Predecessor 'landed' at T-60,280440,0.094,lightgbm,0.2359,0.7156
+Predecessor 'landed' at T-60,280440,0.094,xgboost_tuned,0.2307,0.7092
+Predecessor 'landed' at T-60,280440,0.094,xgboost_native_tuned,0.2402,0.7172
+Predecessor 'landed' at T-60,280440,0.094,xgboost,0.2252,0.7063
+Predecessor 'landed' at T-60,280440,0.094,logistic_regression,0.1769,0.6648
+Predecessor 'landed' at T-60,280440,0.094,random_forest,0.2209,0.7046
+Predecessor 'landed' at T-60,280440,0.094,decision_tree,0.1764,0.6623
+No predecessor (first leg / broken chain),235496,0.149,lightgbm,0.3796,0.7288
+No predecessor (first leg / broken chain),235496,0.149,xgboost_tuned,0.3818,0.7242
+No predecessor (first leg / broken chain),235496,0.149,xgboost_native_tuned,0.3845,0.7317
+No predecessor (first leg / broken chain),235496,0.149,xgboost,0.3759,0.7228
+No predecessor (first leg / broken chain),235496,0.149,logistic_regression,0.31,0.6819
+No predecessor (first leg / broken chain),235496,0.149,random_forest,0.3663,0.7245
+No predecessor (first leg / broken chain),235496,0.149,decision_tree,0.3304,0.6976

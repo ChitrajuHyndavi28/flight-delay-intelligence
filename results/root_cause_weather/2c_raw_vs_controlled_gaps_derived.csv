@@ -1,0 +1,9 @@
+treat,ref,metric,treated_rate,ref_rate,raw_gap,raw_lo,raw_hi,controlled_gap,ctl_lo,ctl_hi,matched_cells,matched_treated_flights
+moderate,clear,delay_rate_pct,27.65,17.024,10.626,8.979,12.183,10.734,9.3,11.991,1163,577007
+moderate,clear,avg_arr_delay_min,12.506,2.759,9.747,8.193,11.227,10.092,8.663,11.391,1163,577007
+moderate,clear,cancel_rate_pct,3.058,1.069,1.989,1.366,2.723,1.761,1.175,2.484,1163,577007
+moderate,clear,disrupted_rate_pct,30.094,18.123,11.972,9.982,13.858,11.862,10.221,13.372,1163,577007
+severe,clear,delay_rate_pct,40.365,17.024,23.34,20.015,26.544,23.431,19.941,26.497,528,186739
+severe,clear,avg_arr_delay_min,28.066,2.759,25.308,21.357,29.498,25.89,21.608,30.27,528,186739
+severe,clear,cancel_rate_pct,8.981,1.069,7.912,5.277,10.725,7.693,4.892,10.661,528,186739
+severe,clear,disrupted_rate_pct,45.91,18.123,27.788,23.696,31.861,27.483,23.382,31.335,528,186739

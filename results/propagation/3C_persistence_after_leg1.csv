@@ -1,0 +1,19 @@
+leg1_status,leg,flights,mean_arr_delay
+leg 1 arrived 15-59 late,1,113328,29.12
+leg 1 arrived 15-59 late,2,97442,19.91
+leg 1 arrived 15-59 late,3,77673,18.69
+leg 1 arrived 15-59 late,4,58344,17.97
+leg 1 arrived 15-59 late,5,36507,19.41
+leg 1 arrived 15-59 late,6,21540,19.25
+leg 1 arrived 60+ min late,1,46763,143.76
+leg 1 arrived 60+ min late,2,37027,75.6
+leg 1 arrived 60+ min late,3,27071,58.49
+leg 1 arrived 60+ min late,4,19232,45.41
+leg 1 arrived 60+ min late,5,10691,43.97
+leg 1 arrived 60+ min late,6,6181,37.06
+leg 1 on time,1,1072545,-9.29
+leg 1 on time,2,993144,-1.95
+leg 1 on time,3,863081,1.7
+leg 1 on time,4,700245,5.22
+leg 1 on time,5,469083,7.7
+leg 1 on time,6,301523,9.17
