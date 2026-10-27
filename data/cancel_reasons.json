@@ -1,0 +1,1 @@
+[{"reason": "A", "cancelled": 25262, "reason_name": "Airline", "share_pct": 28.11}, {"reason": "B", "cancelled": 48851, "reason_name": "Weather", "share_pct": 54.35}, {"reason": "C", "cancelled": 15749, "reason_name": "NAS", "share_pct": 17.52}, {"reason": "D", "cancelled": 22, "reason_name": "Security", "share_pct": 0.02}]

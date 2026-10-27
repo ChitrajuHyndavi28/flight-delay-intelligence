@@ -1,0 +1,1 @@
+[{"cause": "Late aircraft", "delay_minutes": 24961931.0, "share_pct": 39.84}, {"cause": "Airline", "delay_minutes": 20172956.0, "share_pct": 32.2}, {"cause": "Air system (NAS)", "delay_minutes": 14335762.0, "share_pct": 22.88}, {"cause": "Weather", "delay_minutes": 3100233.0, "share_pct": 4.95}, {"cause": "Security", "delay_minutes": 80985.0, "share_pct": 0.13}]
